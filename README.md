@@ -2,7 +2,7 @@
 
 Java 16 https://java.developpez.com/actu/313470/Oracle-annonce-la-disponibilite-de-Java-16-tour-d-horizon-des-nouvelles-fonctionnalites-et-ameliorations-du-JDK/
 
-LTS 8-11
+LTS 8-11-17
 
 **8**-9
 
