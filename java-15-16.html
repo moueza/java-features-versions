@@ -16,7 +16,62 @@
       <section v-else-if="userPermission === 'adminVelseif'">v-else-if</section>
       <!-- Si l'utilisateur n'a aucune autorisation afficher ce qui suit -->
       <section v-else>v-else</section>
+	    <div>
+	    
+Améliorations du langage présentées dans JDK 14 et finalisées dans JDK 16
 
+1) JEP 394 : le filtrage par motif (Pattern Matching) pour l'opérateur instanceof.
+
+2) JEP 395 : les enregistrements (Records)[/B], qui peuvent être vus comme des tuples nominaux.
+
+Un nouvel outil pour améliorer la productivité des développeurs
+
+3) JEP 392 : un outil de packaging, jpackage, pour packager des applications Java autocontenues.
+
+Améliorations de la gestion de la mémoire pour augmenter encore les performances
+
+4) JEP 387 : métaespace élastique. Cela permet de restituer plus rapidement au système d'exploitation la mémoire classe-métadonnées HotSpot inutilisée (c'est-à-dire le métaespace, ou metaspace), diminuer l'empreinte du métaespace et simplifier le code du métaespace pour réduire les coûts de maintenance.
+
+5) JEP 376 : traitement simultané de la pile de threads de ZGC. Il s'agissait ici de déplacer le traitement de la pile de threads de ZGC des points de sécurité (safepoints) vers une phase concurrente.
+
+Amélioration du réseau pour renforcer la souplesse et la productivité des développeurs
+
+6) JEP 380 : les canaux des sockets de domaine UNIX. L'amélioration consiste à ajouter le support de toutes les fonctionnalités des sockets de domaine Unix (communes à Windows et aux plus grandes plateformes Unix) aux API de canaux de socket et de canaux de socket serveur dans le package java.nio.channels. Les sockets de domaine Unix sont utilisées pour les communications interprocessus (IPC) sur le même hôte. Elles sont en de nombreux points comparables aux sockets TCP/IP, sauf qu'elles sont adressées par des noms de chemin du système de fichiers plutôt que par des adresses et des numéros de port Internet Protocol (IP).
+
+Traitement du code incompatible avec les évolutions futures
+
+7) JEP 396 : encapsulage fort des internes du JDK par défaut. Dans le JDK 9, Oracle avait encapsulé fortement les nouveaux éléments de l'API interne, afin d'en limiter l'accès. Cependant, pour faciliter la migration, JDK 9 avait délibérément choisi de ne pas encapsuler fortement à l'exécution le contenu des packages qui existaient dans JDK 8. JDK 16 restreint cette contrainte en encapsulant par défaut la plupart des éléments internes du JDK, sauf pour des API internes critiques telles que sun.misc.Unsafe. Les utilisateurs finaux peuvent toujours choisir l'encapsulation forte plus légère qui était le comportement par défaut depuis JDK 9. Cette solution encourage les développeurs à migrer de l'utilisation d'éléments internes à l'utilisation des API standards, afin qu'eux-mêmes et leurs utilisateurs puissent passer sans problème aux futures versions de Java.
+
+8) JEP 390 : avertissements pour les classes basées sur des valeurs. La proposition ici était de désigner les classes enveloppantes primitives comme étant basées sur des valeurs et déprécier leurs constructeurs pour encourager leur suppression, en générant de nouveaux avertissements de dépréciation. Cette version génère des avertissements de tentatives inappropriées de synchronisation sur des instances de toute classe basée sur des valeurs dans la plateforme Java.
+
+
+
+Fonctionnalités en statut d'incubation ou en préversion
+
+9) JEP 338 : API Vecteur. Cette fonctionnalité fournit une itération initiale d'un module en incubation, jdk.incubator.vector, pour exprimer des calculs de vecteurs se compilant de façon fiable à l'exécution vers des instructions matérielles optimales de vecteurs sur les architectures CPU supportées.
+
+10) JEP 389 : API d'édition de liens étrangers (Foreign Linker API). Cette fonctionnalité en statut d'incubation introduit une API offrant un accès au code natif pur Java typé statiquement.
+
+11) JEP 393 : API d'accès à la mémoire étrangère (Foreign-Memory Access API). Cette fonctionnalité également en statut d'incubation introduit une API permettant aux programmes Java d'accéder de façon sure et efficace à la mémoire étrangère à l'extérieur du heap Java.
+
+12) JEP 397 : Classes scellées (préversion). Cette nouveauté enrichit le langage de programmation Java avec des classes et interfaces scellées. Les classes et interfaces scellées restreignent les autres classes ou interfaces qui pourront les étendre ou les implémenter.
+
+Améliorations pour les contributeurs d'OpenJDK
+
+13) JEP 347 : activation des fonctionnalités du langage C++14 (dans le code source du JDK). Cette amélioration vise à permettre l'utilisation des fonctionnalités du langage C++14 dans le code source C++ du JDK, et formuler des recommandations précises sur les fonctionnalités qui peuvent être utilisées dans le code HotSpot.
+
+14) JEP 357 : migration de Mercurial vers Git. Il s'agissait ici de migrer les référentiels de codes sources de la communauté OpenJDK depuis Mercurial (hg) vers Git.
+
+15) JEP 369 : migration vers GitHub (hébergement des référentiels Git de la communauté OpenJDK sur GitHub).
+
+De nouveaux portages pour le support de Java sur encore plus de plateformes
+
+16) JEP 386 : portage du JDK sur Alpine Linux et sur d'autres distributions Linux utilisant musl comme bibliothèque C primaire, sur les deux architectures x64 et AArch64.
+
+17)JEP 388 : portage du JDK sur Windows/Aarch64
+
+
+	    </div>
 	    <div>
 		    http://openjdk.java.net/projects/jdk/16/
 		    <br>
