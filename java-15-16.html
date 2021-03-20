@@ -1,1 +1,1662 @@
 
+<!DOCTYPE html>
+<html lang="fr" xmlns:og="http://ogp.me/ns#">
+<head>
+	<meta charset="iso-8859-1">
+	<title>Oracle annonce la disponibilité de Java 16 : tour d'horizon des nouvelles fonctionnalités et améliorations du JDK</title>
+	<link rel="amphtml" href="https://java.developpez.com/actu/313470/Oracle-annonce-la-disponibilite-de-Java-16-tour-d-horizon-des-nouvelles-fonctionnalites-et-ameliorations-du-JDK/?amp">
+	<meta name="generator" content="developpez-com">
+	<meta name="description" content="Oracle annonce la disponibilité de Java 16 avec 17 nouveautés (JEP) visant à améliorer la productivité des développeurs. La dernière version du Java Development Kit (JDK) intègre la finalisation des enregistrements et du filtrage par motif (Pattern Matching) pour l'opérateur instanceof, ainsi que des améliorations du langage présentées en préversion dans Java 14. Les développeurs pourront également utiliser le nouvel outil de packaging pour livrer des applications Java autocontenues, mais aussi ...">
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Oracle annonce la disponibilité de Java 16 : tour d'horizon des nouvelles fonctionnalités et améliorations du JDK" />
+	<meta property="og:image" content="https://www.developpez.com/images/logos/java.png" />
+	<meta property="og:url" content="https://java.developpez.com/actu/313470/Oracle-annonce-la-disponibilite-de-Java-16-tour-d-horizon-des-nouvelles-fonctionnalites-et-ameliorations-du-JDK/" />
+	<meta property="og:article:tag" content="Technologies" />
+	<meta property="og:locale" content="fr_FR" />
+	<meta property="og:site_name" content="Developpez.com" />
+	<meta property="twitter:card" content="summary" />
+	<meta property="twitter:url" content="https://java.developpez.com/actu/313470/Oracle-annonce-la-disponibilite-de-Java-16-tour-d-horizon-des-nouvelles-fonctionnalites-et-ameliorations-du-JDK/" />
+	<meta property="twitter:title" content="Oracle annonce la disponibilité de Java 16 : tour d'horizon des nouvelles fonctionnalités et améliorations du JDK" />
+	<meta property="twitter:image" content="https://www.developpez.com/images/logos/java.png" />
+	<meta property="twitter:site" content="@javaDeveloppez" />
+	<meta property="twitter:creator" content="@Developpez" />
+	<script type="text/javascript" src="/template/scripts/jquery-3.4.1.js"></script>
+	<script type="text/javascript" src="/template/scripts/bootstrap/popper.js"></script>
+	<script type="text/javascript" src="/template/scripts/bootstrap/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="/template/scripts/bootstrap/bootstrap.js"></script>
+	<link rel="stylesheet" href="/template/css/bootstrap/bootstrap.css" />
+	<link rel="stylesheet" href="/template/css/bootstrap/bootstrap-social.css" />
+	<link rel="stylesheet" href="/template/fonts/fontawesome/css/all.min.css" />
+	<link rel="stylesheet" href="/template/fonts/fontawesome/css/fontawesome.min.css" />
+	<script async type="text/javascript" src="https://www.developpez.com/ws/pageview/url/java,actu,313470,Oracle-annonce-la-disponibilite-de-Java-16-tour-d-horizon-des-nouvelles-fonctionnalites-et-ameliorations-du-JDK/"></script>
+<!-- Quantcast Choice. Consent Manager Tag v2.0 (for TCF 2.0) -->
+<script type="text/javascript" async=true>
+(function() {
+var host = "www.developpez.com";
+var element = document.createElement('script');
+var firstScript = document.getElementsByTagName('script')[0];
+var url = 'https://quantcast.mgr.consensu.org'
+.concat('/choice/', '6Fv0cGNfc_bw8', '/', host, '/choice.js')
+var uspTries = 0;
+var uspTriesLimit = 3;
+element.async = true;
+element.type = 'text/javascript';
+element.src = url;
+
+firstScript.parentNode.insertBefore(element, firstScript);
+
+function makeStub() {
+var TCF_LOCATOR_NAME = '__tcfapiLocator';
+var queue = [];
+var win = window;
+var cmpFrame;
+
+function addFrame() {
+var doc = win.document;
+var otherCMP = !!(win.frames[TCF_LOCATOR_NAME]);
+
+if (!otherCMP) {
+if (doc.body) {
+var iframe = doc.createElement('iframe');
+
+iframe.style.cssText = 'display:none';
+iframe.name = TCF_LOCATOR_NAME;
+doc.body.appendChild(iframe);
+} else {
+setTimeout(addFrame, 5);
+}
+}
+return !otherCMP;
+}
+
+function tcfAPIHandler() {
+var gdprApplies;
+var args = arguments;
+
+if (!args.length) {
+return queue;
+} else if (args[0] === 'setGdprApplies') {
+if (
+args.length > 3 &&
+args[2] === 2 &&
+typeof args[3] === 'boolean'
+) {
+gdprApplies = args[3];
+if (typeof args[2] === 'function') {
+args[2]('set', true);
+}
+}
+} else if (args[0] === 'ping') {
+var retr = {
+gdprApplies: gdprApplies,
+cmpLoaded: false,
+cmpStatus: 'stub'
+};
+
+if (typeof args[2] === 'function') {
+args[2](retr);
+}
+} else {
+queue.push(args);
+}
+}
+
+function postMessageEventHandler(event) {
+var msgIsString = typeof event.data === 'string';
+var json = {};
+
+try {
+if (msgIsString) {
+json = JSON.parse(event.data);
+} else {
+json = event.data;
+}
+} catch (ignore) {}
+
+var payload = json.__tcfapiCall;
+
+if (payload) {
+window.__tcfapi(
+payload.command,
+payload.version,
+function(retValue, success) {
+var returnMsg = {
+tcfapiReturn: {
+returnValue: retValue,
+success: success,
+callId: payload.callId
+}
+};
+if (msgIsString) {
+returnMsg = JSON.stringify(returnMsg);
+}
+if (event && event.source && event.source.postMessage) {
+event.source.postMessage(returnMsg, '*');
+}
+},
+payload.parameter
+);
+}
+}
+
+while (win) {
+try {
+if (win.frames[TCF_LOCATOR_NAME]) {
+cmpFrame = win;
+break;
+}
+} catch (ignore) {}
+
+if (win === window.top) {
+break;
+}
+win = win.parent;
+}
+if (!cmpFrame) {
+addFrame();
+win.__tcfapi = tcfAPIHandler;
+win.addEventListener('message', postMessageEventHandler, false);
+}
+};
+
+makeStub();
+
+var uspStubFunction = function() {
+var arg = arguments;
+if (typeof window.__uspapi !== uspStubFunction) {
+setTimeout(function() {
+if (typeof window.__uspapi !== 'undefined') {
+window.__uspapi.apply(window.__uspapi, arg);
+}
+}, 500);
+}
+};
+
+var checkIfUspIsReady = function() {
+uspTries++;
+if (window.__uspapi === uspStubFunction && uspTries < uspTriesLimit) {
+console.warn('USP is not accessible');
+} else {
+clearInterval(uspInterval);
+}
+};
+
+if (typeof window.__uspapi === 'undefined') {
+window.__uspapi = uspStubFunction;
+var uspInterval = setInterval(checkIfUspIsReady, 6000);
+}
+})();
+</script>
+<!-- End Quantcast Choice. Consent Manager Tag v2.0 (for TCF 2.0) -->	<script async="async" src="https://www.googletagservices.com/tag/js/gpt.js"></script>
+	<script>
+		var googletag = googletag || {};
+		googletag.cmd = googletag.cmd || [];
+	</script>
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<link rel="shortcut icon" type="image/x-icon" href="/template/favicon.ico" />
+	<link rel="image_src" href="https://www.developpez.com/facebook-icon.png" />
+	<link rel="stylesheet" type="text/css" href="/template/css/gabarit.css?1609947216" />
+	<link rel="stylesheet" type="text/css" media="print" href="/template/css/printer.css" />
+	<script type="text/javascript" src="/template/scripts/gabarit.js?1609947216"></script>
+	<link rel="stylesheet" type="text/css" media="screen" href="/public/css/index2.css?1616214306?" />
+	<meta name="original-source" content="https://java.developpez.com/actu/313470/" />
+
+	<link rel="alternate" type="application/rss+xml" title="RSS 2.0 Developpez.com : Club francophone des développeurs Java : actualités, forums, sondages, débats, cours, faq, ..." href="/rss.php" />
+	<link rel="alternate" type="application/rss+xml" title="Atom 1.0 Developpez.com : Club francophone des développeurs Java : actualités, forums, sondages, débats, cours, faq, ..." href="/atom.php" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<meta http-equiv="Cache-Control" content="no-cache" />
+	<!--[if lt IE 9]>
+	<script type="text/javascript" src="/template/kit/html5_ie.js"></script>
+	<![endif]-->
+	<meta name="news_keywords" content="Oracle, Java">
+
+</head>
+<body>
+	<header>
+
+	<div id="gabarit_b1">
+		<div id="gabarit_connexion">
+	<form>
+		<div><span>Identifiant</span><input type="text" class="form_input form-control" id="formloginConnexion" /><span>Mot de passe</span><input type="password" class="form_input form-control" id="formpassConnexion"/><input type="button" value="Connexion" id="formbuttonConnexion" class="btn btn-primary" /><div id="loadingConnexion" class="spinner-border text-light" role="status"><span class="sr-only">Loading...</span></div></div><a id="mdpoublier" href="http://www.developpez.net/forums/login.php?do=lostpw">Mot de passe oublié ?</a><a id="inscriptionConnexion" href="https://www.developpez.net/forums/inscription/" class="btn btn-primary">Je m'inscris ! (gratuit)</a>	
+	</form>
+</div>		<div id="gabarit-barreRecherche" style="display:none;"><form action="https://www.google.fr" target="_blank">
+  <div>
+    <input type="hidden" name="cx" value="partner-pub-8110924381468607:6449306375" />
+    <input type="hidden" name="ie" value="ISO-8859-1" />
+    <input type="text" name="q" size="12" />
+    <input type="submit" name="sa" value="Rechercher" />
+  </div>
+</form></div>
+<div id="gabarit-new-logo" role="gabarit-accueil">
+	<a href="https://www.developpez.com"><img src="/template/images/logo-dvp-h55.png" width="48" height="55" /></a>
+	<a href="https://www.developpez.com"><span class="dvp"></span></a>
+	<span class="triangle"></span>
+</div>
+<div id="gabarit_recherche">
+	<div class="gabarit-btn-menu profil dn" role="gabarit-profil"></div>
+	<div class="gabarit-btn-menu profil dn" role="gabarit-connecter"><span></span><a id="gabaritRepereLogout" class="btn btn-primary"></a></div>
+	<div class="gabarit-btn-menu contacts" role="gabarit-contacts"></div>
+	<div class="gabarit-btn-menu recherche" role="gabarit-recherche"></div>
+</div>
+
+<div id="gabarit_superieur">
+	<nav>
+	<ul>
+		<li><a href="https://www.developpez.net/forums/" title="">Forums</a></li>
+		<li><a href="https://general.developpez.com/cours/" title="">Tutoriels</a></li>
+		<li><a href="https://general.developpez.com/faq/" title="">FAQ</a></li>
+		<li><a href="https://www.developpez.net/forums/blogs/" title="">Blogs</a></li>
+		<li><a href="https://chat.developpez.com/" title="">Chat</a></li>
+		<li><a href="https://www.developpez.com/newsletter/">Newsletter</a></li>
+		<li><a href="https://emploi.developpez.com/" title="">Emploi</a></li>
+		<li><a href="https://etudes.developpez.com/">Études</a></li>
+		<li><a href="https://droit.developpez.com/" title="">Droit</a></li>
+		<li><a href="https://club.developpez.com/">Club</a></li>
+	</ul>
+	</nav>
+</div>	</div>
+	<nav>
+
+<ul id="gabarit_menu" style="padding-left:56px;">
+	<li><a href="https://www.developpez.com" data-idrub="1" data-niv="1" style="padding:0;"><div id="gabarit_home"></div></a>
+			</li>
+	<li><a href="https://solutions-entreprise.developpez.com" data-idrub="86" data-niv="1">DI/DSI Solutions d&#039;entreprise<!----></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://solutions-entreprise.developpez.com" data-idrub="86" data-niv="2">DI/DSI Solutions d&#039;entreprise</a></li>
+				<li><a href="https://abbyy.developpez.com" data-idrub="147" data-niv="2">ABBYY</a></li>
+				<li><a href="https://big-data.developpez.com" data-idrub="126" data-niv="2">Big Data</a></li>
+				<li><a href="https://bpm.developpez.com" data-idrub="134" data-niv="2">BPM</a></li>
+				<li><a href="https://business-intelligence.developpez.com" data-idrub="61" data-niv="2">Business Intelligence</a></li>
+				<li><a href="https://solutions-entreprise.developpez.com/erp-pgi/presentation-erp-pgi/" data-idrub="91" data-niv="2">ERP / PGI</a></li>
+				<li><a href="https://crm.developpez.com" data-idrub="92" data-niv="2">CRM</a></li>
+				<li><a href="https://sas.developpez.com" data-idrub="93" data-niv="2">SAS</a></li>
+				<li><a href="https://sap.developpez.com" data-idrub="106" data-niv="2">SAP</a></li>
+				<li><a href="https://www.developpez.net/forums/f1664/systemes/windows/windows-serveur/biztalk-server/" data-idrub="115" data-niv="2">Microsoft BizTalk Server</a></li>
+				<li><a href="https://talend.developpez.com" data-idrub="118" data-niv="2">Talend</a></li>
+				<li><a href="https://droit.developpez.com" data-idrub="132" data-niv="2">Droit informatique et entreprise</a></li>
+			</ul></li>
+	<li><a href="https://cloud-computing.developpez.com" data-idrub="103" data-niv="1">Cloud<!----></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://cloud-computing.developpez.com" data-idrub="103" data-niv="2">Cloud Computing</a></li>
+				<li><a href="https://windows-azure.developpez.com" data-idrub="107" data-niv="2">Microsoft Azure</a></li>
+				<li><a href="https://ibmcloud.developpez.com" data-idrub="135" data-niv="2">IBM Cloud</a></li>
+			</ul></li>
+	<li><a href="https://intelligence-artificielle.developpez.com" data-idrub="143" data-niv="1">IA<!----></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://intelligence-artificielle.developpez.com" data-idrub="143" data-niv="2">Intelligence artificielle</a></li>
+			</ul></li>
+	<li><a href="https://alm.developpez.com" data-idrub="42" data-niv="1">ALM<!--<span class="gabarit_tooltip">Cycle de vie du logiciel</span>--></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://alm.developpez.com" data-idrub="42" data-niv="2">ALM</a></li>
+				<li><a href="https://merise.developpez.com" data-idrub="43" data-niv="2">Merise</a></li>
+				<li><a href="https://uml.developpez.com" data-idrub="12" data-niv="2">UML</a></li>
+			</ul></li>
+	<li><a href="https://dotnet.developpez.com" data-idrub="20" data-niv="1">Microsoft<!----></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://dotnet.developpez.com" data-idrub="20" data-niv="2">Microsoft &amp; .NET</a></li>
+				<li><a href="https://visualstudio.developpez.com" data-idrub="84" data-niv="2">Visual Studio</a></li>
+				<li><a href="https://dotnet.developpez.com/aspnet/" data-idrub="83" data-niv="2">ASP.NET</a></li>
+				<li><a href="https://dotnet.developpez.com/csharp/" data-idrub="81" data-niv="2">C#</a></li>
+				<li><a href="https://dotnet.developpez.com/vbnet/" data-idrub="82" data-niv="2">VB.NET</a></li>
+				<li><a href="https://windows-azure.developpez.com" data-idrub="107" data-niv="2">Microsoft Azure</a></li>
+			</ul></li>
+	<li><a href="https://java.developpez.com" data-idrub="4" data-niv="1" class="gabarit_selection">Java<!--<span class="gabarit_tooltip">Plateforme et langage Java</span>--></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://java.developpez.com" data-idrub="4" data-niv="2">Java</a></li>
+				<li><a href="https://javaweb.developpez.com" data-idrub="97" data-niv="2">Java Web</a></li>
+				<li><a href="https://spring.developpez.com" data-idrub="87" data-niv="2">Spring</a></li>
+				<li><a href="https://android.developpez.com" data-idrub="95" data-niv="2">Android</a></li>
+				<li><a href="https://eclipse.developpez.com" data-idrub="55" data-niv="2">Eclipse</a></li>
+				<li><a href="https://netbeans.developpez.com" data-idrub="66" data-niv="2">NetBeans</a></li>
+			</ul></li>
+	<li><a href="https://web.developpez.com" data-idrub="8" data-niv="1">Dév. Web<!--<span class="gabarit_tooltip">Développement Web et Webmarketing</span>--></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://web.developpez.com" data-idrub="8" data-niv="2">Développement et hébergement Web</a></li>
+				<li><a href="https://ajax.developpez.com" data-idrub="85" data-niv="2">AJAX</a></li>
+				<li><a href="https://apache.developpez.com" data-idrub="71" data-niv="2">Apache</a></li>
+				<li><a href="https://asp.developpez.com" data-idrub="10" data-niv="2">ASP</a></li>
+				<li><a href="https://css.developpez.com" data-idrub="51" data-niv="2">CSS</a></li>
+				<li><a href="https://dart.developpez.com" data-idrub="125" data-niv="2">Dart</a></li>
+				<li><a href="https://flash.developpez.com" data-idrub="41" data-niv="2">Flash / Flex</a></li>
+				<li><a href="https://javascript.developpez.com" data-idrub="45" data-niv="2">JavaScript</a></li>
+				<li><a href="https://nodejs.developpez.com" data-idrub="141" data-niv="2">NodeJS</a></li>
+				<li><a href="https://php.developpez.com" data-idrub="9" data-niv="2">PHP</a></li>
+				<li><a href="https://ruby.developpez.com" data-idrub="53" data-niv="2">Ruby &amp; Rails</a></li>
+				<li><a href="https://typescript.developpez.com" data-idrub="127" data-niv="2">TypeScript</a></li>
+				<li><a href="https://web-semantique.developpez.com" data-idrub="111" data-niv="2">Web sémantique</a></li>
+				<li><a href="https://webmarketing.developpez.com" data-idrub="80" data-niv="2">Webmarketing</a></li>
+				<li><a href="https://xhtml.developpez.com" data-idrub="50" data-niv="2">(X)HTML</a></li>
+			</ul></li>
+	<li><a href="https://edi.developpez.com" data-idrub="90" data-niv="1">EDI<!--<span class="gabarit_tooltip">Environnements de Développement Intégré</span>--></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://edi.developpez.com" data-idrub="90" data-niv="2">EDI</a></li>
+				<li><a href="https://4d.developpez.com" data-idrub="39" data-niv="2">4D</a></li>
+				<li><a href="https://delphi.developpez.com" data-idrub="2" data-niv="2">Delphi</a></li>
+				<li><a href="https://eclipse.developpez.com" data-idrub="55" data-niv="2">Eclipse</a></li>
+				<li><a href="https://jetbrains.developpez.com" data-idrub="144" data-niv="2">JetBrains</a></li>
+				<li><a href="https://labview.developpez.com" data-idrub="72" data-niv="2">LabVIEW</a></li>
+				<li><a href="https://netbeans.developpez.com" data-idrub="66" data-niv="2">NetBeans</a></li>
+				<li><a href="https://matlab.developpez.com" data-idrub="58" data-niv="2">MATLAB</a></li>
+				<li><a href="https://scilab.developpez.com" data-idrub="120" data-niv="2">Scilab</a></li>
+				<li><a href="https://visualstudio.developpez.com" data-idrub="84" data-niv="2">Visual Studio</a></li>
+				<li><a href="https://wind.developpez.com" data-idrub="74" data-niv="2">WinDev</a></li>
+				<li><a href="https://vb.developpez.com" data-idrub="5" data-niv="2">Visual Basic 6</a></li>
+				<li><a href="https://lazarus.developpez.com" data-idrub="96" data-niv="2">Lazarus</a></li>
+				<li><a href="https://qt-creator.developpez.com" data-idrub="109" data-niv="2">Qt Creator</a></li>
+			</ul></li>
+	<li><a href="https://programmation.developpez.com" data-idrub="119" data-niv="1">Programmation<!--<span class="gabarit_tooltip">Programmation et langages de programmation applicatifs</span>--></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://programmation.developpez.com" data-idrub="119" data-niv="2">Programmation</a></li>
+				<li><a href="https://algo.developpez.com" data-idrub="47" data-niv="2">Débuter - Algorithmique</a></li>
+				<li><a href="https://jeux.developpez.com" data-idrub="38" data-niv="2">2D - 3D - Jeux</a></li>
+				<li><a href="https://asm.developpez.com" data-idrub="16" data-niv="2">Assembleur</a></li>
+				<li><a href="https://c.developpez.com" data-idrub="3" data-niv="2">C</a></li>
+				<li><a href="https://cpp.developpez.com" data-idrub="59" data-niv="2">C++</a></li>
+				<li><a href="https://d.developpez.com" data-idrub="123" data-niv="2">D</a></li>
+				<li><a href="https://go.developpez.com" data-idrub="124" data-niv="2">Go</a></li>
+				<li><a href="https://kotlin.developpez.com" data-idrub="145" data-niv="2">Kotlin</a></li>
+				<li><a href="https://objective-c.developpez.com" data-idrub="117" data-niv="2">Objective C</a></li>
+				<li><a href="https://pascal.developpez.com" data-idrub="7" data-niv="2">Pascal</a></li>
+				<li><a href="https://perl.developpez.com" data-idrub="29" data-niv="2">Perl</a></li>
+				<li><a href="https://python.developpez.com" data-idrub="27" data-niv="2">Python</a></li>
+				<li><a href="https://rust.developpez.com" data-idrub="137" data-niv="2">Rust</a></li>
+				<li><a href="https://swift.developpez.com" data-idrub="128" data-niv="2">Swift</a></li>
+				<li><a href="https://qt.developpez.com" data-idrub="65" data-niv="2">Qt</a></li>
+				<li><a href="https://xml.developpez.com" data-idrub="11" data-niv="2">XML</a></li>
+				<li><a href="https://general.developpez.com/cours/" data-idrub="21" data-niv="2">Autres</a></li>
+			</ul></li>
+	<li><a href="https://sgbd.developpez.com" data-idrub="13" data-niv="1">SGBD<!--<span class="gabarit_tooltip">Systèmes de Gestion de Bases de Données</span>--></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://sgbd.developpez.com" data-idrub="13" data-niv="2">SGBD &amp; SQL</a></li>
+				<li><a href="https://4d.developpez.com" data-idrub="39" data-niv="2">4D</a></li>
+				<li><a href="https://access.developpez.com" data-idrub="19" data-niv="2">Access</a></li>
+				<li><a href="https://big-data.developpez.com" data-idrub="126" data-niv="2">Big Data</a></li>
+				<li><a href="https://db2.developpez.com" data-idrub="36" data-niv="2">DB2</a></li>
+				<li><a href="https://firebird.developpez.com" data-idrub="73" data-niv="2">Firebird</a></li>
+				<li><a href="https://interbase.developpez.com" data-idrub="32" data-niv="2">InterBase</a></li>
+				<li><a href="https://mysql.developpez.com" data-idrub="31" data-niv="2">MySQL</a></li>
+				<li><a href="https://nosql.developpez.com" data-idrub="114" data-niv="2">NoSQL</a></li>
+				<li><a href="https://postgresql.developpez.com" data-idrub="33" data-niv="2">PostgreSQL</a></li>
+				<li><a href="https://oracle.developpez.com" data-idrub="25" data-niv="2">Oracle</a></li>
+				<li><a href="https://sybase.developpez.com" data-idrub="37" data-niv="2">Sybase</a></li>
+				<li><a href="https://sqlserver.developpez.com" data-idrub="34" data-niv="2">SQL-Server</a></li>
+			</ul></li>
+	<li><a href="https://office.developpez.com" data-idrub="54" data-niv="1">Office<!--<span class="gabarit_tooltip">Bureautique pour l'entreprise</span>--></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://office.developpez.com" data-idrub="54" data-niv="2">Microsoft Office</a></li>
+				<li><a href="https://access.developpez.com" data-idrub="19" data-niv="2">Access</a></li>
+				<li><a href="https://excel.developpez.com" data-idrub="75" data-niv="2">Excel</a></li>
+				<li><a href="https://word.developpez.com" data-idrub="76" data-niv="2">Word</a></li>
+				<li><a href="https://outlook.developpez.com" data-idrub="77" data-niv="2">Outlook</a></li>
+				<li><a href="https://powerpoint.developpez.com" data-idrub="78" data-niv="2">PowerPoint</a></li>
+				<li><a href="https://sharepoint.developpez.com" data-idrub="79" data-niv="2">SharePoint</a></li>
+				<li><a href="https://project.developpez.com" data-idrub="99" data-niv="2">Microsoft Project</a></li>
+				<li><a href="https://openoffice-libreoffice.developpez.com" data-idrub="116" data-niv="2">OpenOffice &amp; LibreOffice</a></li>
+			</ul></li>
+	<li><a href="https://mobiles.developpez.com" data-idrub="94" data-niv="1">Mobiles<!--<span class="gabarit_tooltip">Logiciels et matériels mobiles</span>--></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://mobiles.developpez.com" data-idrub="94" data-niv="2">Mobiles</a></li>
+				<li><a href="https://android.developpez.com" data-idrub="95" data-niv="2">Android</a></li>
+				<li><a href="https://ios.developpez.com" data-idrub="101" data-niv="2">iOS</a></li>
+			</ul></li>
+	<li><a href="https://systeme.developpez.com" data-idrub="30" data-niv="1">Systèmes<!--<span class="gabarit_tooltip">Logiciels et matériels systèmes</span>--></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://systeme.developpez.com" data-idrub="30" data-niv="2">Systèmes</a></li>
+				<li><a href="https://windows.developpez.com" data-idrub="17" data-niv="2">Windows</a></li>
+				<li><a href="https://linux.developpez.com" data-idrub="18" data-niv="2">Linux</a></li>
+				<li><a href="https://arduino.developpez.com" data-idrub="142" data-niv="2">Arduino</a></li>
+				<li><a href="https://securite.developpez.com" data-idrub="40" data-niv="2">Sécurité</a></li>
+				<li><a href="https://hardware.developpez.com" data-idrub="64" data-niv="2">Hardware</a></li>
+				<li><a href="https://hpc.developpez.com" data-idrub="139" data-niv="2">HPC</a></li>
+				<li><a href="https://mac.developpez.com" data-idrub="57" data-niv="2">Mac</a></li>
+				<li><a href="https://raspberry-pi.developpez.com" data-idrub="131" data-niv="2">Raspberry Pi</a></li>
+				<li><a href="https://reseau.developpez.com" data-idrub="70" data-niv="2">Réseau</a></li>
+				<li><a href="https://green-it.developpez.com" data-idrub="104" data-niv="2">Green IT</a></li>
+				<li><a href="https://embarque.developpez.com" data-idrub="110" data-niv="2">Systèmes embarqués</a></li>
+				<li><a href="https://virtualisation.developpez.com" data-idrub="108" data-niv="2">Virtualisation</a></li>
+			</ul></li>
+</ul>
+
+<ul id="gabarit_barre1"><li class="gabarit_selection"><a href="https://java.developpez.com">Java</a></li><li><a href="https://javaweb.developpez.com">Java Web</a></li><li><a href="https://spring.developpez.com">Spring</a></li><li><a href="https://android.developpez.com">Android</a></li><li><a href="https://eclipse.developpez.com">Eclipse</a></li><li><a href="https://netbeans.developpez.com">NetBeans</a></li></ul>
+
+<div id="gabarit_barre2">
+	<a class="gabarit_social gabarit_facebook" href="http://www.facebook.com/pages/Java/368176262168" target="_blank" title="Retrouver Developpez sur Facebook"></a>
+	<a class="gabarit_social gabarit_twitter" href="http://twitter.com/javaDeveloppez" target="_blank" title="Retrouver Developpez sur Twitter"></a>
+	<a class="gabarit_social gabarit_rss" href="http://java.developpez.com/index/rss" target="_blank" title="Flux RSS"></a>
+	<ul>
+<li><a href="https://www.developpez.net/forums/f6/java/">Forums Java</a></li><li><a href="https://java.developpez.com/faq/">FAQ Java</a></li><li><a href="https://java.developpez.com/cours/">Tutoriels Java</a></li><li><a href="https://java.developpez.com/livres/">Livres Java</a></li><li><a href="https://java.developpez.com/videos/">Vidéos Java</a></li><li><a href="https://java.developpez.com/telecharger/index/categorie/43/Sources-Java">Sources Java</a></li><li><a href="https://java.developpez.com/outils/">Outils, EDI &amp; API Java</a></li><li><a href="http://javasearch.developpez.com">JavaSearch</a></li>	</ul>
+</div>
+
+</nav>
+
+
+	</header>
+	<section>
+
+	<div id="gabarit_pubBB">
+		<div id="gabarit_pub0"></div><div id="pq4lg0t" class="dvpb0" style="display: inline-block; width: 728px; height: 90px"></div>
+	</div>
+
+	<div class="contenuPage">
+
+<link rel="stylesheet" href="/public/css/actu.css?1609791015" type="text/css" />
+
+<script type="text/javascript">function afterLogged(){}</script>
+<style>
+.cms_table, .cms_table table{
+	border-collapse: collapse;
+}
+.cms_table td{
+	border: 1px solid #ECE0E3;
+}
+
+.cms_table tr:first-child{
+	background-color: #EBEFF2;
+}
+
+table.cms_table td{
+	vertical-align: middle;
+}
+
+.cms_table_grid{
+	margin:15px;
+}
+
+.cms_table tr:first-child td{
+	text-align: center;
+}
+
+.bbcode_quote{
+	border: dashed 1px #aaa;
+	padding: 3px;
+	margin: 0 0 10px 10px;
+}
+.bbcode_code{
+	border: inset 1px #999;
+	height: auto !important;
+	max-height: 300px;
+	max-width: 700px;
+	padding: 5px;
+	background-color: #F2F6F8;
+	margin:2px;
+	margin-left: 20px;
+}
+
+.alt2{
+	max-width: 700px;
+}
+
+ol.decimal > li{list-style:decimal outside}
+ol.upper-roman > li{list-style:upper-roman outside}
+ol.lower-roman > li{list-style:lower-roman outside}
+ol.upper-alpha > li{list-style:upper-alpha outside}
+ol.lower-alpha > li{list-style:lower-alpha outside}
+</style>
+<script type="text/javascript">
+function ano_selectionnerCode(objet) {
+	var texte = $(objet).parent().parent().parent().parent().parent().find("td pre").get(0);
+
+	if (texte == undefined)
+		texte = $(objet).parent().parent().parent().parent().parent().children("pre").get(0);
+
+	if (window.getSelection) {
+			var selection = window.getSelection();
+			var intervalle = document.createRange();
+			intervalle.selectNodeContents(texte);
+			selection.removeAllRanges();
+			selection.addRange(intervalle);
+
+	} else if (document.body.createTextRange) {
+			var intervalle = document.body.createTextRange();
+			intervalle.moveToElementText(texte);
+			intervalle.select();
+	}
+
+	return false;
+}</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+<style>
+#actu a, .postMessage a, .postMessage a:visited, .postUser a{
+	color: #3788b6;
+	text-decoration: underline;
+}
+
+#actu ul, .postMessage ul{
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+.postUser{
+	border-color:#e1e1e1;
+	border-style: solid;
+	border-width: 1px;
+	font-size:9pt;
+	padding:5px !important;
+	background-image:url("/template/kit/kitlivrebg.gif");
+	background-position:left top;
+	background-repeat:repeat;
+	font-family:Arial;
+}
+
+.postMessage{
+	padding: 10px 5px !important;
+	font-size: 9pt;
+	font-family: Arial;
+	border: 1px solid #ddd;
+}
+
+.postMessage img{
+	max-width: 600px;
+}
+
+.postComment{
+	color:#222;
+	margin:5px 0 5px 0;
+}
+
+.posterAvatar{
+	float: left;
+	margin:0 5px 0 0;
+	padding:3px;
+	height: 40px;
+	border: 1px solid rgb(204,204,204);
+	border-radius:3px;
+	background-color:#fff !important;
+}
+
+.postUser .date {
+    color: #777;
+    font-family: Arial;
+    font-size: 8pt;
+    margin: 10px;
+    padding-left: 10px;
+}
+</style>
+
+<script type="text/javascript" src="/public/js/votes.js?1608206002"></script>
+
+<script type="text/javascript" src="/public/js/log.js?1609791015"></script>
+
+<script type="text/javascript" src="/public/js/demande-log.js?1608206001"></script>
+
+<style type="text/css">
+	
+	#demandeConnexion{
+		display: none;
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding:0;
+		position: fixed;
+		top:0;
+		left:0;
+		z-index: 998;
+		background:#000000a6;
+	}
+
+	#demandeConnexion_contenu {
+		text-align: left;
+		position: fixed;
+		z-index: 999;
+		-webkit-border-radius: .35rem;
+		border-radius: .35rem;
+		display:block;
+		width: 80%;
+		height: auto;
+		margin: 0;
+		left: 10%;
+		top: calc(50% - 237px);
+		background: #fff;
+	}
+	#demandeConnexion_contenu #fermerDemande {
+		position: absolute;
+		top: 2px;
+		right: 10px;
+		z-index: 1;
+		width: 40px;
+		cursor: pointer;
+		color: #fff;
+		text-shadow: 1px 1px 0 #000;
+		height: 40px;
+		line-height: 40px;
+		text-align: center;
+	}
+	#demandeConnexion_contenu #fermerDemande:hover { color:#7fe8ed; }
+	
+	#demandeConnexion_contenu p.alert {
+		-webkit-border-radius: .35rem .35rem 0 0;
+		border-radius: .35rem .35rem 0 0;
+		background:#293a4e;
+		color:#fff;
+		font-weight:bold;
+		border-color:#fff;
+	} 
+	#demandeConnexion_contenu .englobeForm { padding: 20px 20px 30px; }
+	#demandeConnexion_contenu #demandeAction { padding:.025rem 0.855rem; }
+	 
+	#demandeConnexion_contenu .form-control {
+		display: inline-block;
+		font-size:.8rem;
+		line-height:1rem;
+		width:300px;
+	}
+ 
+	#demandeConnexion_contenu textarea.form-control { width:calc(100% - 30px); height: 200px; margin-top: 7px; }
+	
+	#demandeConnexion .row { margin-top:40px; }
+	
+	#demandeConnexion .groupbox { background:#fff; margin-bottom:10px; margin-left:0; margin-right:0; border:0; }
+	#demandeConnexion .cat_content { background:#fff; font-size:12pt; margin:0; padding-bottom:12px; overflow:hidden; padding:0 0 5px 0; }
+	
+	#demandeConnexion input { border:1px solid #648499b3; }
+	#demandeConnexion .form-control { margin-bottom:5px; }
+	
+	#demandeConnexion .form-control:focus { box-shadow: none; }
+	
+	#demandeConnexion p.card-text { margin: 30px 0; padding: 0; }
+	
+	#demandeConnexion #demandeLoginFormButton { width:100%; }		
+	#demandeConnexion a.btn-primary { width: calc(100% - 25px); }
+	
+	#demandeConnexion #loadingIMGdemande { display:none; position:absolute; right:30px; bottom:26px; }	
+	#demandeConnexion #loadingIMGdemande i { font-size:16pt; color:#fff; }	
+	
+	#demandeConnexion #demandeLoginFormMsg { color:red; margin:0; margin-top:20px; font-size:11pt; }
+	
+	#demandeConnexion #logoDvp { position:absolute; bottom:30px; right:30px; }
+	
+	#demandeConnexion .cat_content a { color:#317BA5; }
+	
+	#demandeConnexion #demandeIdentification { padding-left:5px; }
+	#demandeConnexion #demandeInscription { padding-right:5px; }
+	
+	#demandeConnexion #demandeIdentification .formIdentite td.form_label { width: 100px; }
+	#demandeConnexion #demandeIdentification .formIdentite td:not(form_label) { width: calc(100% - 100px); }
+	#demandeConnexion #demandeIdentification .formIdentite td input { width: calc(100% - 24px); }
+	
+	
+</style>
+
+<div id="demandeConnexion">
+	<form>
+		<div id="demandeConnexion_contenu">
+			
+			<img id="logoDvp" src="/public/images/images_actu_logo-dvp-150x43-fond-blanc.png" />
+		
+			<i id="fermerDemande" class="fas fa-times"></i>
+			<p class="alert alert-info">Vous êtes nouveau sur Developpez.com ? Créez votre compte ou connectez-vous afin de pouvoir participer !</p>
+			<div class="englobeForm">
+			
+				<p>Vous devez avoir un compte Developpez.com et être connecté pour pouvoir participer aux discussions.</p>
+				
+				<p>Vous n'avez pas encore de compte Developpez.com ? <a href="https://www.developpez.net/forums/inscription/">Créez-en un en quelques instants</a>, c'est entièrement gratuit !</p>
+				
+				<p>Si vous disposez déjà d'un compte et qu'il est bien activé, connectez-vous à l'aide du formulaire ci-dessous.</p>
+				
+				<div class="row">
+					<div id="demandeIdentification" class="col-sm-6">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title">Identifiez-vous</h5>
+								
+								<div id="demandeLoginBox" class="card-text">
+									<div class="groupbox">
+										<div class="cat_content">
+											<table width="100%">
+												<tr class="formIdentite">
+													<td nowrap="nowrap" class="form_label">Identifiant</td>
+													<td><input type="text" class="form_input form-control" id="demandeLoginFormlogin"/></td>
+												</tr>
+												<tr class="formIdentite">
+													<td nowrap="nowrap" class="form_label">Mot de passe</td>
+													<td><input type="password" class="form_input form-control" id="demandeLoginFormPass"/></td>
+												</tr>
+												<tr><td colspan="2"><div id="demandeLoginFormMsg" style="display: none;"/></td></tr>
+												<tr><td colspan="2" align="right" class="form_label"><a href="http://www.developpez.net/forums/login.php?do=lostpw">Mot de passe oublié ?</a></td></tr>
+											</table>
+										</div>
+									</div>
+								</div>
+								<script type="text/javascript">
+									$(function(){
+										new demandeLoggingForm({
+											redirectAction : function() {
+												var ancre = '';
+												if (demandeConnexionComRedirection > 0)
+													ancre = "#post" + demandeConnexionComRedirection;											
+												window.location.href = "https://java.developpez.com/actu/313470/Oracle-annonce-la-disponibilite-de-Java-16-tour-d-horizon-des-nouvelles-fonctionnalites-et-ameliorations-du-JDK/?1616214306" + ancre;
+											}
+										});
+									});
+								</script>
+								<div id="btnValidationConnexion">
+									<input type="button" value="Je me connecte !" id="demandeLoginFormButton" class="btn btn-primary" title="Insérez votre identifiant et mot de passe dans les cases correspondantes pour vous connecter, ou cliquez sur le bouton « S'inscrire » pour créer un profil personnel."/>
+									<div id="loadingIMGdemande"><i class="fas fa-redo gly-spin"></i></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="demandeInscription" class="col-sm-6">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title">Créer un compte</h5>
+								<p class="card-text">L'inscription est gratuite et ne vous prendra que quelques instants !</p>
+								<a href="https://www.developpez.net/forums/inscription/" class="btn btn-primary">Je m'inscris !</a>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
+		</div>
+	</form>
+</div>
+<article itemscope itemtype="http://schema.org/Article" class="contenuActu">
+
+	<h1 class="actuTitle">
+		<header>
+			<div itemprop="name">Oracle annonce la disponibilité de Java 16 :</div>
+			<div style="font-size: 1rem">Tour d'horizon des nouvelles fonctionnalités et améliorations du JDK</div>
+		</header>
+	</h1>
+
+	
+	<div class="date">Le <time itemprop="dateCreated" datetime="2021-03-16T19:26:47">16 mars 2021 à 19:26</time>, par <a itemprop="creator" href="https://www.developpez.com/user/profil/675120/Michael-Guilloux">Michael Guilloux</a><div class="directComActu"><a href="https://www.developpez.net/forums/d2088339/java/general-java/oracle-annonce-disponibilite-java-16/#post11699920">15 commentaires</a></div></div>
+
+	<div class="reseauxSociaux" style="display:flex;">
+		
+		<div style="width:100%; white-space:nowrap;">
+			<a class="btn btn-block btn-facebook" target="_blank" rel="nofollow" href="https://www.developpez.com/actu/partager/id/313470/site/facebook/titre/Oracle annonce la disponibilit&eacute; de Java 16 : ~~tour d'horizon des nouvelles fonctionnalit&eacute;s et am&eacute;liorations du JDK/">
+				<span class="fab fa-facebook-f"></span>
+							</a>
+			<a class="btn btn-block btn-twitter" target="_blank" rel="nofollow" href="https://www.developpez.com/actu/partager/id/313470/site/twitter/titre/Oracle annonce la disponibilit&eacute; de Java 16 : ~~tour d'horizon des nouvelles fonctionnalit&eacute;s et am&eacute;liorations du JDK/">
+				<span class="fab fa-twitter"></span>
+							</a>
+			<a class="btn btn-block btn-linkedin" target="_blank" rel="nofollow" href="https://www.developpez.com/actu/partager/id/313470/site/linkedin/titre/Oracle annonce la disponibilit&eacute; de Java 16 : ~~tour d'horizon des nouvelles fonctionnalit&eacute;s et am&eacute;liorations du JDK/">
+				<span class="fab fa-linkedin-in" style="position:relative; top:1px; left:1px;"></span>
+							</a>
+			<a class="btn btn-block btn-reddit" target="_blank" rel="nofollow" href="https://www.developpez.com/actu/partager/id/313470/site/reddit/titre/Oracle annonce la disponibilit&eacute; de Java 16 : ~~tour d'horizon des nouvelles fonctionnalit&eacute;s et am&eacute;liorations du JDK/">
+				<span class="fab fa-reddit-alien"></span>
+							</a>
+			<a class="btn btn-block btn-envelope" target="_blank" rel="nofollow" href="https://www.developpez.com/actu/partager/id/313470/site/mail/titre/Oracle annonce la disponibilit&eacute; de Java 16 : ~~tour d'horizon des nouvelles fonctionnalit&eacute;s et am&eacute;liorations du JDK/">
+				<span class="fas fa-envelope" style="position:relative; top:-2px;"></span>
+							</a>
+
+			<p class="nbPartage">
+				56<span>PARTAGES</span>			</p>
+		</div>
+
+							<script type="text/javascript">var g_token = "0168987cb9bd1dd73b808def20878a44"; </script>
+
+<div class="contentCom" style="width:max-content; margin:4px 14px 0 10%; height:30px; white-space:nowrap;" ><table cellspacing="0" cellpadding="0" style="margin:0px;"><tbody><tr data-actu="313470" data-post="11699920" class="ciblerVoteUnique"><td role='plus' style="padding-right:20px;">
+<img role='voteplus' src='/public/images/vote/vote_plus.png' title='Voter pour' style='cursor:pointer;' data-vote='1'>
+<span role='nbvotesplus' style='display: inline-block; position:relative; top:1px; left:0; margin-left:0; font-size:.75rem; color:#4e4e4e; font-weight: bold;'>12</span>&nbsp;</td>
+<td role='moins'>
+<img role='votemoins' src='/public/images/vote/vote_moins.png' title='Voter contre' style='cursor:pointer;' data-vote='1'>
+<span role='nbvotesmoins' style='display: inline-block; position:relative; top:1px; left:0; margin-left:0; font-size:.75rem; color:#4e4e4e; font-weight: bold;'>0</span>&nbsp;</td>
+</tr></tbody></table></div>	</div>
+
+	
+	<div class="content" itemprop="articleBody">
+					<img src="https://www.developpez.com/images/logos/java.png" style="float:left; margin:0 15px 15px 0;"/>
+				<b>Oracle annonce la disponibilité de Java 16 avec 17 nouveautés (JEP) visant à améliorer la productivité des développeurs. La dernière version du Java Development Kit (JDK) intègre la finalisation des enregistrements et du filtrage par motif (Pattern Matching) pour l'opérateur instanceof, ainsi que des améliorations du langage présentées en préversion dans Java 14. Les développeurs pourront également utiliser le nouvel outil de packaging pour livrer des applications Java autocontenues, mais aussi découvrir trois interfaces de programmation en incubation&nbsp;: l'API Vecteur, l'API d'édition de liens étrangers et l'API d'accès à la mémoire étrangère. Il y a en outre une fonctionnalité qui est disponible en préversion&nbsp;: les classes scellées.</b><br/><br/>Oracle publie tous les six mois des mises à jour de Java afin que les développeurs puissent s'appuyer sur un calendrier de sorties prévisible. Les innovations sortent à un rythme soutenu pour améliorer constamment la performance, la stabilité et la sécurité, et contribuer à la diffusion de Java dans toutes les entreprises de tous les secteurs d'activité, quelle que soit leur taille.<br/><br/>Ainsi, après un semestre de collaboration intense entre les ingénieurs Oracle et les membres de la communauté Java, le JDK 16 est disponible avec son lot de nouveautés&nbsp;: ont été intégrées 17 propositions d'améliorations (JEP) relatives au langage, aux outils, à la gestion de la mémoire, avec de nouvelles fonctionnalités en statut incubation ou préversion.<br/><br/><b><font size="3">Améliorations du langage présentées dans JDK 14 et finalisées dans JDK 16</font></b><br/><br/><ul><li style="">JEP 394&nbsp;: le filtrage par motif (Pattern Matching) pour l'opérateur instanceof.<br/><br/></li><li style="">JEP 395&nbsp;: les enregistrements (Records)[/B], qui peuvent être vus comme des tuples nominaux.</li></ul><br />
+<b><font size="3">Un nouvel outil pour améliorer la productivité des développeurs</font></b><br/><br/><ul><li style="">JEP 392&nbsp;: un outil de packaging, jpackage, pour packager des applications Java autocontenues.</li></ul><br />
+<b><font size="3">Améliorations de la gestion de la mémoire pour augmenter encore les performances</font></b><br/><br/><ul><li style="">JEP 387&nbsp;: métaespace élastique. Cela permet de restituer plus rapidement au système d'exploitation la mémoire classe-métadonnées HotSpot inutilisée (c'est-à-dire le métaespace, ou metaspace), diminuer l'empreinte du métaespace et simplifier le code du métaespace pour réduire les coûts de maintenance.<br/><br/></li><li style="">JEP 376&nbsp;: traitement simultané de la pile de threads de ZGC. Il s'agissait ici de déplacer le traitement de la pile de threads de ZGC des points de sécurité (safepoints) vers une phase concurrente.</li></ul><br />
+<b><font size="3">Amélioration du réseau pour renforcer la souplesse et la productivité des développeurs</font></b><br/><br/><ul><li style="">JEP 380&nbsp;: les canaux des sockets de domaine UNIX. L'amélioration consiste à ajouter le support de toutes les fonctionnalités des sockets de domaine Unix (communes à Windows et aux plus grandes plateformes Unix) aux API de canaux de socket et de canaux de socket serveur dans le package java.nio.channels. Les sockets de domaine Unix sont utilisées pour les communications interprocessus (IPC) sur le même hôte. Elles sont en de nombreux points comparables aux sockets TCP/IP, sauf qu'elles sont adressées par des noms de chemin du système de fichiers plutôt que par des adresses et des numéros de port Internet Protocol (IP).</li></ul><br />
+<b><font size="3">Traitement du code incompatible avec les évolutions futures</font></b><br/><br/><ul><li style="">JEP 396&nbsp;: encapsulage fort des internes du JDK par défaut. Dans le JDK 9, Oracle avait encapsulé fortement les nouveaux éléments de l'API interne, afin d'en limiter l'accès. Cependant, pour faciliter la migration, JDK 9 avait délibérément choisi de ne pas encapsuler fortement à l'exécution le contenu des packages qui existaient dans JDK 8. JDK 16 restreint cette contrainte en encapsulant par défaut la plupart des éléments internes du JDK, sauf pour des API internes critiques telles que sun.misc.Unsafe. Les utilisateurs finaux peuvent toujours choisir l'encapsulation forte plus légère qui était le comportement par défaut depuis JDK 9. Cette solution encourage les développeurs à migrer de l'utilisation d'éléments internes à l'utilisation des API standards, afin qu'eux-mêmes et leurs utilisateurs puissent passer sans problème aux futures versions de Java.<br/><br/></li><li style="">JEP 390&nbsp;: avertissements pour les classes basées sur des valeurs. La proposition ici était de désigner les classes enveloppantes primitives comme étant basées sur des valeurs et déprécier leurs constructeurs pour encourager leur suppression, en générant de nouveaux avertissements de dépréciation. Cette version génère des avertissements de tentatives inappropriées de synchronisation sur des instances de toute classe basée sur des valeurs dans la plateforme Java.</li></ul><br />
+<div style="text-align: center;"><img src="https://www.developpez.net/forums/attachments/p593558d1/a/a/a" /></div><br />
+<b><font size="3">Fonctionnalités en statut d'incubation ou en préversion</font></b><br/><br/><ul><li style="">JEP 338&nbsp;: API Vecteur. Cette fonctionnalité fournit une itération initiale d'un module en incubation, jdk.incubator.vector, pour exprimer des calculs de vecteurs se compilant de façon fiable à l'exécution vers des instructions matérielles optimales de vecteurs sur les architectures CPU supportées.<br/><br/></li><li style="">JEP 389&nbsp;: API d'édition de liens étrangers (Foreign Linker API). Cette fonctionnalité en statut d'incubation introduit une API offrant un accès au code natif pur Java typé statiquement.<br/><br/></li><li style="">JEP 393&nbsp;: API d'accès à la mémoire étrangère (Foreign-Memory Access API). Cette fonctionnalité également en statut d'incubation introduit une API permettant aux programmes Java d'accéder de façon sure et efficace à la mémoire étrangère à l'extérieur du heap Java.<br/><br/></li><li style="">JEP 397&nbsp;: Classes scellées (préversion). Cette nouveauté enrichit le langage de programmation Java avec des classes et interfaces scellées. Les classes et interfaces scellées restreignent les autres classes ou interfaces qui pourront les étendre ou les implémenter.</li></ul><br />
+<b><font size="3">Améliorations pour les contributeurs d'OpenJDK</font></b><br/><br/><ul><li style="">JEP 347&nbsp;: activation des fonctionnalités du langage C++14 (dans le code source du JDK). Cette amélioration vise à permettre l'utilisation des fonctionnalités du langage C++14 dans le code source C++ du JDK, et formuler des recommandations précises sur les fonctionnalités qui peuvent être utilisées dans le code HotSpot.<br/><br/></li><li style="">JEP 357&nbsp;: migration de Mercurial vers Git. Il s'agissait ici de migrer les référentiels de codes sources de la communauté OpenJDK depuis Mercurial (hg) vers Git.<br/><br/></li><li style="">JEP 369&nbsp;: migration vers GitHub (hébergement des référentiels Git de la communauté OpenJDK sur GitHub).</li></ul><br />
+<b><font size="3">De nouveaux portages pour le support de Java sur encore plus de plateformes</font></b><br/><br/><ul><li style="">JEP 386&nbsp;: portage du JDK sur Alpine Linux et sur d'autres distributions Linux utilisant musl comme bibliothèque C primaire, sur les deux architectures x64 et AArch64.<br/><br/></li><li style="">JEP 388&nbsp;: portage du JDK sur Windows/Aarch64</li></ul><br />
+Selon Georges Saab, Vice-Président d'Oracle en charge du développement de la plateforme Java, cette dernière version démontre toute la puissance de ce rythme semestriel. «&nbsp;Le filtrage par motif et les enregistrements étaient apparus pour la première fois il y a un an avec le JDK 14, ils ont, depuis, intégré plusieurs cycles de commentaires de la communauté basés sur leur utilisation dans des applications opérationnelles. Ce processus a permis aux développeurs Java d'expérimenter ces fonctionnalités avant leur finalisation, mais il a aussi permis de tenir compte de ces retours essentiels pour aboutir à deux JEP solides comme le roc, qui répondent vraiment aux besoins de la communauté&nbsp;», dit-il. Java 16 est disponible en téléchargement pour les différentes plateformes prises en charge.<br/><br/>Source&nbsp;: <a href="https://www.oracle.com/news/announcement/oracle-announces-java-16-031621.html" target="_blank">Oracle</a>, <a href="http://openjdk.java.net/projects/jdk/16/" target="_blank">Nouveautés du JDK 16</a><br/><br/><b>Et vous&nbsp;?</b><br/><br/><img src="https://www.developpez.net/forums/images/smilies/fleche.gif" border="0" alt="" title=":fleche:" class="inlineimg" /> Que pensez-vous de ces nouvelles fonctionnalités et améliorations&nbsp;?<br />
+<img src="https://www.developpez.net/forums/images/smilies/fleche.gif" border="0" alt="" title=":fleche:" class="inlineimg" /> Lesquelles appréciez-vous le plus&nbsp;? Pourquoi&nbsp;?<br />
+<img src="https://www.developpez.net/forums/images/smilies/fleche.gif" border="0" alt="" title=":fleche:" class="inlineimg" /> Quelles fonctionnalités disponibles dans les autres langages aimeriez-vous voir dans Java&nbsp;?<br/><br/><b>Voir aussi&nbsp;:</b><br/><br/><img src="https://www.developpez.net/forums/images/smilies/fleche.gif" border="0" alt="" title=":fleche:" class="inlineimg" /> <a href="https://java.developpez.com/actu/313172/Marquee-obsolete-depuis-2016-l-API-Applet-sera-bientot-definitivement-supprimee-de-Java-y-a-t-il-des-raisons-de-regretter-les-applets-Java/" target="_blank">Marquée obsolète depuis 2016, l'API Applet sera bientôt définitivement supprimée de Java, y a-t-il des raisons de regretter les applets Java&nbsp;?</a><br />
+<img src="https://www.developpez.net/forums/images/smilies/fleche.gif" border="0" alt="" title=":fleche:" class="inlineimg" /> <a href="https://java.developpez.com/actu/308884/Alors-que-Java-fete-ses-25-ans-Oracle-annonce-l-arrivee-de-JDK-15-Cette-version-modernise-le-code-existant-et-s-accompagne-de-la-suppression-du-moteur-JavaScript-Nashorn/" target="_blank">Alors que Java fête ses 25 ans, Oracle annonce l'arrivée de JDK 15. Cette version modernise le code existant et s'accompagne de la suppression du moteur JavaScript Nashorn</a><br />
+<img src="https://www.developpez.net/forums/images/smilies/fleche.gif" border="0" alt="" title=":fleche:" class="inlineimg" /> <a href="https://java.developpez.com/actu/307870/Le-JDK-16-est-deja-en-cours-de-developpement-bien-que-les-travaux-sur-le-JDK-15-continuent-et-devrait-arriver-avec-la-prise-en-charge-des-fonctionnalites-du-Cplusplus-14/" target="_blank">Le JDK 16 est déjà en cours de développement, bien que les travaux sur le JDK 15 continuent, et devrait arriver avec la prise en charge des fonctionnalités du C++ 14</a>	</div>
+
+	<div id="signalerFrame">
+		<i id="fermerSignaler" class="fas fa-times"></i>
+		<p class="alert alert-info">Une erreur dans cette actualité ? Signalez-le nous !</p>
+		<div class="signalerFrame_interne">
+
+			
+			<label class="description">Décrivez l'erreur que vous souhaitez porter à notre connaissance :
+				<textarea class="form-control" name="comment" role="comment" required></textarea>
+			</label>
+
+			<p style="text-align: center;"><input class="button" type="submit" value="Envoyer" class="button" id="signalerAction" /></p>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		$(function(){
+			$(".signaler").css("cursor", "pointer").click(function() {
+				$('body').css('overflow', 'hidden');
+				$('body').append('<div id="signalerFond"></div>');
+				$("#signalerFrame").css({
+					'top': '50%', 
+					'z-index' : '31'
+				});
+				$("#signalerFrame").show();
+				$("#signalerFrame textarea").focus();
+			});
+			$("#fermerSignaler").css("cursor", "pointer").click(function() {
+				$("#signalerFrame").hide();
+				$('body').css('overflow', 'auto');
+				$('#signalerFond').remove();
+			});
+			$("#signalerAction").click(function() {
+				$.post("/email/signaler/id/313470", {
+					username: $("#signalerFrame input[name=username]").val(),
+					email: $("#signalerFrame input[name=email]").val(),
+					comment: $("#signalerFrame textarea").val()
+				}, function(r) {
+					alert(r);
+					$("#signalerFrame").hide();
+					$('body').css('overflow', 'auto');
+					$('#signalerFond').remove();
+				}, "text");
+			});
+
+					});
+	</script>
+
+</article>
+
+<div id="comsActu" class="contenuActu">
+	<div class="headerCom">
+		<a href="https://www.developpez.net/forums/d2088339/java/general-java/oracle-annonce-disponibilite-java-16/#post11699920">15 commentaires</a>
+	</div>
+	
+		<script type="text/javascript">
+	$(function() {
+
+		var stopTriComs = false;
+
+		var selectOrdreDefaut = parseInt(2);
+		$('select[name="triComs"] option[value="'+ selectOrdreDefaut +'"]').attr("selected", "selected");
+
+		$('select[name="triComs"]').on('change', function(e) {
+
+			if (stopTriComs)
+				return false;
+
+			stopTriComs = true;
+
+			$('#spinnerTriComs').show();
+
+			var ordre = $(this).val();
+			// triAction
+
+			var data = {
+				ordre: ordre,
+				topic: 2088339,
+				actu: 313470,
+				post: 11699920,
+				securityToken: "0168987cb9bd1dd73b808def20878a44"
+			};
+
+			$.post("/actu/tri", data, function(j) {
+
+				$('[data-partial="showTopic"]').html(j);
+
+				$('#spinnerTriComs').hide();
+
+				$('select[name="triComs"] option[value="'+ ordre +'"]').prop("selected", "selected");
+				$('select[name="triComs"] option').removeProp("selected");
+
+				stopTriComs = false;
+
+			}, 'html');
+		});
+
+	});
+</script>
+<style>
+	.row {
+		display: table;
+		width:100%;
+		margin-bottom:5px;
+		margin-left:-5px;
+	}
+
+	.row [class*="col-"] {
+		float: none;
+
+		vertical-align: top;
+	}
+
+	@media (min-width:991px){
+		.row [class*="col-"] {
+			 display: table-cell;
+		}
+	}
+	</style>
+
+	
+			
+		 
+			<div class="showButtons decalePourSelect">
+									<a class="button poster" href="https://www.developpez.net/forums/newreply.php?do=newreply&amp;noquote=1&amp;t=2088339">
+						<i class="fas fa-edit"></i><span>Commenter</span>
+					</a>
+
+								<a class="button signaler" title="Signaler un problème sur cette actualité (correction, suggestion...)">
+					<i class="fas fa-flag"></i><span>Signaler un problème</span>
+				</a>
+
+			</div>
+				
+				
+			<div id="triSurComs">
+		
+	<select name="triComs">
+		<option value="2">Les mieux notés</option>
+		<option value="1">Les plus récents</option>
+		<option value="0">Ordre chronologique</option>
+	</select>
+	
+	<div id="spinnerTriComs"><i class="glyphicon glyphicon-repeat gly-spin"></i></div>
+	
+</div><div class="topic">		
+			
+									
+			<div data-partial="showTopic">			
+						
+								
+				<div id="post11700474" class="d-flex flex-row showtopic">
+					<div class="p-2 postUser premier" itemscope itemtype="http://data-vocabulary.org/Person">
+													<div class="username">
+								<a href="https://www.developpez.com/user/profil/1456627/Jonathan-muswil" itemprop="name" class="fn">
+									Jonathan muswil								</a>
+							</div>
+												<div class="avatar">
+															<img itemprop="photo" class="posterAvatar" src="https://www.developpez.net/forums/image.php?u=1456627" title="Avatar de Jonathan muswil" alt="Avatar de Jonathan muswil" />
+													</div>
+						<div class="user">
+							<span itemprop="role" class="title">
+								Membre à l'essai							</span>
+
+							<span style="display:none" itemprop="affiliation">https://www.developpez.com</span>
+							<span style="display:none" class="adr" itemprop="location" itemscope itemtype="http://data-vocabulary.org/Address">
+								<span style="display:none" itemprop="coutry-name" class="region"></span>
+							</span>							
+
+							<div class="date">Le 17/03/2021 à 18:47</div>
+							
+						</div>
+					</div>
+
+					
+					<div class="p-2 postMessage item premier voteCom" valign="top">
+						Quand je pense a sun vraiment &#129300;&#129300;&#129300;						<script type="text/javascript">var g_token = "0168987cb9bd1dd73b808def20878a44"; </script>
+
+<div class="votesDansLesComs"><div class="contentCom" style="width:max-content; margin:4px 14px 0 10%; height:30px; white-space:nowrap;" ><table cellspacing="0" cellpadding="0" style="margin:0px;"><tbody><tr data-actu="313470" data-post="11700474" class="ciblerVoteCom"><td role='plus'>
+<img role='voteplus' src='/public/images/vote-coms/vote_plus.png' title='Voter pour' style='cursor:pointer;' data-vote='1'>
+<span role='nbvotesplus'>1</span>&nbsp;</td>
+<td role='moins'>
+<img role='votemoins' src='/public/images/vote-coms/vote_moins.png' title='Voter contre' style='cursor:pointer;' data-vote='1'>
+<span role='nbvotesmoins'>1</span>&nbsp;</td>
+</tr></tbody></table></div></div>					</div>
+				</div>
+					
+						
+								
+				<div id="post11700900" class="d-flex flex-row showtopic">
+					<div class="p-2 postUser" itemscope itemtype="http://data-vocabulary.org/Person">
+													<div class="username">
+								<a href="https://www.developpez.com/user/profil/45357/thelvin" itemprop="name" class="fn">
+									thelvin								</a>
+							</div>
+												<div class="avatar">
+															<img itemprop="photo" class="posterAvatar" src="https://www.developpez.com/public/images/default-avatar.png" title="Avatar de thelvin" alt="Avatar de thelvin" />
+													</div>
+						<div class="user">
+							<span itemprop="role" class="title">
+								Modérateur							</span>
+
+							<span style="display:none" itemprop="affiliation">https://www.developpez.com</span>
+							<span style="display:none" class="adr" itemprop="location" itemscope itemtype="http://data-vocabulary.org/Address">
+								<span style="display:none" itemprop="coutry-name" class="region"></span>
+							</span>							
+
+							<div class="date">Le 18/03/2021 à 16:02</div>
+							
+						</div>
+					</div>
+
+					
+					<div class="p-2 postMessage item voteCom" valign="top">
+						Ça tombe bien, ça fait un sacré bail que Java 8 n'est plus supporté. En tout cas pas sa version canonique, fournie par Oracle. D'autres comme Coretto fournissent leur propre mouture du JDK 8 et le maintiennent encore, jurant à qui veut l'entendre que ça continuera pendant un bon moment.<br/><br/>Sinon, l'approche recommandée, c'est de fournir des exécutables natifs aux clients chez qui on installe pas Java nous-même. jpackager (pour faire des .exe, .msi ou équivalents MacOS et linux à partir d'un programme Java) est justement mis en avant dans cette nouvelle release. Il existait avant, et puis il y avait des alternatives tierces.<br/><br/>&quot;Mais l'intérêt de Java n'est-il pas d'être indépendant des système et machine hôtes ?&quot; Ça fait un sacré bail que Java n'est plus le seul, et les autres qui font pareil, ne distribuent que des exécutables natifs. Autrement dit, ça fait bien plus de 10 ans qu'on a compris que s'abstraire de l'hôte, ça donne de gros avantages d'architecture de conception, mais que le fait qu'à la fin le livrable binaire puisse tourner sur n'importe quelle machine ça n'a aucun intérêt. Il en existe trois, de toute façon, des machines différentes. L'abstraction précitée permet de partir du programme Java et de générer les trois binaires pour les trois machines clientes possibles, sans effort.<br/><br/>Quant aux cas où on a vraiment besoin d'être abstraits du système, c'est pour être capable de s'adapter aux changements d'écosystèmes qui ne préviennent pas. C'est pour les applications hébergées, pas les applications qui tournent sur un ordi de salon. Et même si c'est pas le fournisseur qui héberge, en 2019 (pardon, 2021,) les livrables de ce genre d'applis ce sont des images docker. Sur lesquelles Java entre autres est installé. Dont le fournisseur a bien évidemment lui-même choisi la version.						<script type="text/javascript">var g_token = "0168987cb9bd1dd73b808def20878a44"; </script>
+
+<div class="votesDansLesComs"><div class="contentCom" style="width:max-content; margin:4px 14px 0 10%; height:30px; white-space:nowrap;" ><table cellspacing="0" cellpadding="0" style="margin:0px;"><tbody><tr data-actu="313470" data-post="11700900" class="ciblerVoteCom"><td role='plus'>
+<img role='voteplus' src='/public/images/vote-coms/vote_plus.png' title='Voter pour' style='cursor:pointer;' data-vote='1'>
+<span role='nbvotesplus'>1</span>&nbsp;</td>
+<td role='moins'>
+<img role='votemoins' src='/public/images/vote-coms/vote_moins.png' title='Voter contre' style='cursor:pointer;' data-vote='1'>
+<span role='nbvotesmoins'>1</span>&nbsp;</td>
+</tr></tbody></table></div></div>					</div>
+				</div>
+					
+						
+								
+				<div id="post11700988" class="d-flex flex-row showtopic">
+					<div class="p-2 postUser" itemscope itemtype="http://data-vocabulary.org/Person">
+													<div class="username">
+								<a href="https://www.developpez.com/user/profil/45357/thelvin" itemprop="name" class="fn">
+									thelvin								</a>
+							</div>
+												<div class="avatar">
+															<img itemprop="photo" class="posterAvatar" src="https://www.developpez.com/public/images/default-avatar.png" title="Avatar de thelvin" alt="Avatar de thelvin" />
+													</div>
+						<div class="user">
+							<span itemprop="role" class="title">
+								Modérateur							</span>
+
+							<span style="display:none" itemprop="affiliation">https://www.developpez.com</span>
+							<span style="display:none" class="adr" itemprop="location" itemscope itemtype="http://data-vocabulary.org/Address">
+								<span style="display:none" itemprop="coutry-name" class="region"></span>
+							</span>							
+
+							<div class="date">Le 18/03/2021 à 18:20</div>
+							
+						</div>
+					</div>
+
+					
+					<div class="p-2 postMessage item voteCom" valign="top">
+						<div class="bbcode_container">
+	<div class="bbcode_quote">
+		<div class="quote_container">
+			<div class="bbcode_quote_container"></div>
+			
+				<div class="bbcode_postedby">
+					<img src="https://forum.developpez.be/images/misc/quote_icon.png" alt="Citation" /> Envoyé par <strong>walfrat</strong>
+					<a href="https://www.developpez.net/forums/showthread.php?p=11700983#post11700983" rel="nofollow"><img class="inlineimg" src="https://forum.developpez.be/images/buttons/viewpost-right.png" alt="Voir le message" /></a>
+				</div>
+				<div class="message">Car si tu livre avec un .bat, il faut autoriser la ligne de commande.</div>
+			
+		</div>
+	</div>
+</div>? Curieuse idée... Il suffit de double-cliquer sur le .bat.<br/><br/>Et de fournir un raccourci avec icône qui se contente de lancer le .bat.						<script type="text/javascript">var g_token = "0168987cb9bd1dd73b808def20878a44"; </script>
+
+<div class="votesDansLesComs"><div class="contentCom" style="width:max-content; margin:4px 14px 0 10%; height:30px; white-space:nowrap;" ><table cellspacing="0" cellpadding="0" style="margin:0px;"><tbody><tr data-actu="313470" data-post="11700988" class="ciblerVoteCom"><td role='plus'>
+<img role='voteplus' src='/public/images/vote-coms/vote_plus.png' title='Voter pour' style='cursor:pointer;' data-vote='1'>
+<span role='nbvotesplus'>1</span>&nbsp;</td>
+<td role='moins'>
+<img role='votemoins' src='/public/images/vote-coms/vote_moins.png' title='Voter contre' style='cursor:pointer;' data-vote='1'>
+<span role='nbvotesmoins'>1</span>&nbsp;</td>
+</tr></tbody></table></div></div>					</div>
+				</div>
+					
+						
+								
+				<div id="post11701070" class="d-flex flex-row showtopic">
+					<div class="p-2 postUser" itemscope itemtype="http://data-vocabulary.org/Person">
+													<div class="username">
+								<a href="https://www.developpez.com/user/profil/93249/lvr" itemprop="name" class="fn">
+									lvr								</a>
+							</div>
+												<div class="avatar">
+															<img itemprop="photo" class="posterAvatar" src="https://www.developpez.net/forums/image.php?u=93249" title="Avatar de lvr" alt="Avatar de lvr" />
+													</div>
+						<div class="user">
+							<span itemprop="role" class="title">
+								Membre éprouvé							</span>
+
+							<span style="display:none" itemprop="affiliation">https://www.developpez.com</span>
+							<span style="display:none" class="adr" itemprop="location" itemscope itemtype="http://data-vocabulary.org/Address">
+								<span style="display:none" itemprop="coutry-name" class="region"></span>
+							</span>							
+
+							<div class="date">Le 18/03/2021 à 21:39</div>
+							
+						</div>
+					</div>
+
+					
+					<div class="p-2 postMessage item voteCom" valign="top">
+						<div class="bbcode_container">
+	<div class="bbcode_quote">
+		<div class="quote_container">
+			<div class="bbcode_quote_container"></div>
+			
+				<div class="bbcode_postedby">
+					<img src="https://forum.developpez.be/images/misc/quote_icon.png" alt="Citation" /> Envoyé par <strong>thelvin</strong>
+					<a href="https://www.developpez.net/forums/showthread.php?p=11700900#post11700900" rel="nofollow"><img class="inlineimg" src="https://forum.developpez.be/images/buttons/viewpost-right.png" alt="Voir le message" /></a>
+				</div>
+				<div class="message">Sinon, l'approche recommandée, c'est de fournir des exécutables natifs aux clients chez qui on installe pas Java nous-même. jpackager (pour faire des .exe, .msi ou équivalents MacOS et linux à partir d'un programme Java) est justement mis en avant dans cette nouvelle release. Il existait avant, et puis il y avait des alternatives tierces.</div>
+			
+		</div>
+	</div>
+</div>Je crois que je vais me pencher vers .jarpackager. Mais, bon, comme mes apps sont des apps perso fait sur mon petit temps libre et que je mets à dispo de qui ça intéresse, cette hétérogénéité ne motive pas trop à partager son taf...						<script type="text/javascript">var g_token = "0168987cb9bd1dd73b808def20878a44"; </script>
+
+<div class="votesDansLesComs"><div class="contentCom" style="width:max-content; margin:4px 14px 0 10%; height:30px; white-space:nowrap;" ><table cellspacing="0" cellpadding="0" style="margin:0px;"><tbody><tr data-actu="313470" data-post="11701070" class="ciblerVoteCom"><td role='plus'>
+<img role='voteplus' src='/public/images/vote-coms/vote_plus.png' title='Voter pour' style='cursor:pointer;' data-vote='1'>
+<span role='nbvotesplus'>0</span>&nbsp;</td>
+<td role='moins'>
+<img role='votemoins' src='/public/images/vote-coms/vote_moins.png' title='Voter contre' style='cursor:pointer;' data-vote='1'>
+<span role='nbvotesmoins'>0</span>&nbsp;</td>
+</tr></tbody></table></div></div>					</div>
+				</div>
+					
+						
+								
+				<div id="post11700176" class="d-flex flex-row showtopic">
+					<div class="p-2 postUser" itemscope itemtype="http://data-vocabulary.org/Person">
+													<div class="username">
+								<a href="https://www.developpez.com/user/profil/93249/lvr" itemprop="name" class="fn">
+									lvr								</a>
+							</div>
+												<div class="avatar">
+															<img itemprop="photo" class="posterAvatar" src="https://www.developpez.net/forums/image.php?u=93249" title="Avatar de lvr" alt="Avatar de lvr" />
+													</div>
+						<div class="user">
+							<span itemprop="role" class="title">
+								Membre éprouvé							</span>
+
+							<span style="display:none" itemprop="affiliation">https://www.developpez.com</span>
+							<span style="display:none" class="adr" itemprop="location" itemscope itemtype="http://data-vocabulary.org/Address">
+								<span style="display:none" itemprop="coutry-name" class="region"></span>
+							</span>							
+
+							<div class="date">Le 17/03/2021 à 11:27</div>
+							
+						</div>
+					</div>
+
+					
+					<div class="p-2 postMessage item voteCom" valign="top">
+						Je suis un peu confus entre les version du JRE et celles du JDK.<br />
+Peut-on écrire du code avec le JDK 16 (pour par exemple profiter de fonctionnalités comme les blocs de textes) et l'exécuter avec une JRE 1.8 ?						<script type="text/javascript">var g_token = "0168987cb9bd1dd73b808def20878a44"; </script>
+
+<div class="votesDansLesComs"><div class="contentCom" style="width:max-content; margin:4px 14px 0 10%; height:30px; white-space:nowrap;" ><table cellspacing="0" cellpadding="0" style="margin:0px;"><tbody><tr data-actu="313470" data-post="11700176" class="ciblerVoteCom"><td role='plus'>
+<img role='voteplus' src='/public/images/vote-coms/vote_plus.png' title='Voter pour' style='cursor:pointer;' data-vote='1'>
+<span role='nbvotesplus'>0</span>&nbsp;</td>
+<td role='moins'>
+<img role='votemoins' src='/public/images/vote-coms/vote_moins.png' title='Voter contre' style='cursor:pointer;' data-vote='1'>
+<span role='nbvotesmoins'>1</span>&nbsp;</td>
+</tr></tbody></table></div></div>					</div>
+				</div>
+					
+						
+								
+				<div id="post11700198" class="d-flex flex-row showtopic">
+					<div class="p-2 postUser" itemscope itemtype="http://data-vocabulary.org/Person">
+													<div class="username">
+								<a href="https://www.developpez.com/user/profil/45357/thelvin" itemprop="name" class="fn">
+									thelvin								</a>
+							</div>
+												<div class="avatar">
+															<img itemprop="photo" class="posterAvatar" src="https://www.developpez.com/public/images/default-avatar.png" title="Avatar de thelvin" alt="Avatar de thelvin" />
+													</div>
+						<div class="user">
+							<span itemprop="role" class="title">
+								Modérateur							</span>
+
+							<span style="display:none" itemprop="affiliation">https://www.developpez.com</span>
+							<span style="display:none" class="adr" itemprop="location" itemscope itemtype="http://data-vocabulary.org/Address">
+								<span style="display:none" itemprop="coutry-name" class="region"></span>
+							</span>							
+
+							<div class="date">Le 17/03/2021 à 11:53</div>
+							
+						</div>
+					</div>
+
+					
+					<div class="p-2 postMessage item voteCom" valign="top">
+						<div class="bbcode_container">
+	<div class="bbcode_quote">
+		<div class="quote_container">
+			<div class="bbcode_quote_container"></div>
+			
+				<div class="bbcode_postedby">
+					<img src="https://forum.developpez.be/images/misc/quote_icon.png" alt="Citation" /> Envoyé par <strong>lvr</strong>
+					<a href="https://www.developpez.net/forums/showthread.php?p=11700176#post11700176" rel="nofollow"><img class="inlineimg" src="https://forum.developpez.be/images/buttons/viewpost-right.png" alt="Voir le message" /></a>
+				</div>
+				<div class="message">Je suis un peu confus entre les version du JRE et celles du JDK.<br />
+Peut-on écrire du code avec le JDK 16 (pour par exemple profiter de fonctionnalités comme les blocs de textes) et l'exécuter avec une JRE 1.8 ?</div>
+			
+		</div>
+	</div>
+</div>Non. L'inverse est possible mais c'est déjà moins étonnant. Ça veut dire qu'on peut utiliser les programmes et libs existants, sans être obligé de garder les versions de Java qui les ont faites à l'époque (et sans être obligé de se caler sur une version unique de Java pour les différentes bibliothèques.)						<script type="text/javascript">var g_token = "0168987cb9bd1dd73b808def20878a44"; </script>
+
+<div class="votesDansLesComs"><div class="contentCom" style="width:max-content; margin:4px 14px 0 10%; height:30px; white-space:nowrap;" ><table cellspacing="0" cellpadding="0" style="margin:0px;"><tbody><tr data-actu="313470" data-post="11700198" class="ciblerVoteCom"><td role='plus'>
+<img role='voteplus' src='/public/images/vote-coms/vote_plus.png' title='Voter pour' style='cursor:pointer;' data-vote='1'>
+<span role='nbvotesplus'>0</span>&nbsp;</td>
+<td role='moins'>
+<img role='votemoins' src='/public/images/vote-coms/vote_moins.png' title='Voter contre' style='cursor:pointer;' data-vote='1'>
+<span role='nbvotesmoins'>1</span>&nbsp;</td>
+</tr></tbody></table></div></div>					</div>
+				</div>
+					
+						
+								
+				<div id="post11700226" class="d-flex flex-row showtopic">
+					<div class="p-2 postUser" itemscope itemtype="http://data-vocabulary.org/Person">
+													<div class="username">
+								<a href="https://www.developpez.com/user/profil/313938/walfrat" itemprop="name" class="fn">
+									walfrat								</a>
+							</div>
+												<div class="avatar">
+															<img itemprop="photo" class="posterAvatar" src="https://www.developpez.com/public/images/default-avatar.png" title="Avatar de walfrat" alt="Avatar de walfrat" />
+													</div>
+						<div class="user">
+							<span itemprop="role" class="title">
+								Membre éprouvé							</span>
+
+							<span style="display:none" itemprop="affiliation">https://www.developpez.com</span>
+							<span style="display:none" class="adr" itemprop="location" itemscope itemtype="http://data-vocabulary.org/Address">
+								<span style="display:none" itemprop="coutry-name" class="region"></span>
+							</span>							
+
+							<div class="date">Le 17/03/2021 à 12:28</div>
+							
+						</div>
+					</div>
+
+					
+					<div class="p-2 postMessage item voteCom" valign="top">
+						<div class="bbcode_container">
+	<div class="bbcode_quote">
+		<div class="quote_container">
+			<div class="bbcode_quote_container"></div>
+			
+				<div class="bbcode_postedby">
+					<img src="https://forum.developpez.be/images/misc/quote_icon.png" alt="Citation" /> Envoyé par <strong>lvr</strong>
+					<a href="https://www.developpez.net/forums/showthread.php?p=11700176#post11700176" rel="nofollow"><img class="inlineimg" src="https://forum.developpez.be/images/buttons/viewpost-right.png" alt="Voir le message" /></a>
+				</div>
+				<div class="message">Je suis un peu confus entre les version du JRE et celles du JDK.<br />
+Peut-on écrire du code avec le JDK 16 (pour par exemple profiter de fonctionnalités comme les blocs de textes) et l'exécuter avec une JRE 1.8 ?</div>
+			
+		</div>
+	</div>
+</div>Le JRE contient ce qu'il faut pour éxécuter du Java.<br/><br/>Je JDK contient le JRE plus ce qu'il faut pour développer en Java (le compilateur Javac par exemple). A noter que certaines technos peuvent avoir besoin du JDK pour être exécuté car elles génèrent du code automatiquement (JSP/SOAP sont des exemples de mémoire).<br/><br/>Il est impossible d'écrire du code incompatible avec une version précédente et de l’exécuter dessus. En revanche tu peux prendre un JDK 16, régler ton environnement en Java 8 et écrire le code en conséquence.						<script type="text/javascript">var g_token = "0168987cb9bd1dd73b808def20878a44"; </script>
+
+<div class="votesDansLesComs"><div class="contentCom" style="width:max-content; margin:4px 14px 0 10%; height:30px; white-space:nowrap;" ><table cellspacing="0" cellpadding="0" style="margin:0px;"><tbody><tr data-actu="313470" data-post="11700226" class="ciblerVoteCom"><td role='plus'>
+<img role='voteplus' src='/public/images/vote-coms/vote_plus.png' title='Voter pour' style='cursor:pointer;' data-vote='1'>
+<span role='nbvotesplus'>0</span>&nbsp;</td>
+<td role='moins'>
+<img role='votemoins' src='/public/images/vote-coms/vote_moins.png' title='Voter contre' style='cursor:pointer;' data-vote='1'>
+<span role='nbvotesmoins'>1</span>&nbsp;</td>
+</tr></tbody></table></div></div>					</div>
+				</div>
+					
+						
+								
+				<div id="post11700272" class="d-flex flex-row showtopic">
+					<div class="p-2 postUser" itemscope itemtype="http://data-vocabulary.org/Person">
+													<div class="username">
+								<a href="https://www.developpez.com/user/profil/85370/esperanto" itemprop="name" class="fn">
+									esperanto								</a>
+							</div>
+												<div class="avatar">
+															<img itemprop="photo" class="posterAvatar" src="https://www.developpez.com/public/images/default-avatar.png" title="Avatar de esperanto" alt="Avatar de esperanto" />
+													</div>
+						<div class="user">
+							<span itemprop="role" class="title">
+								Membre chevronné							</span>
+
+							<span style="display:none" itemprop="affiliation">https://www.developpez.com</span>
+							<span style="display:none" class="adr" itemprop="location" itemscope itemtype="http://data-vocabulary.org/Address">
+								<span style="display:none" itemprop="coutry-name" class="region"></span>
+							</span>							
+
+							<div class="date">Le 17/03/2021 à 13:58</div>
+							
+						</div>
+					</div>
+
+					
+					<div class="p-2 postMessage item voteCom" valign="top">
+						<div class="bbcode_container">
+	<div class="bbcode_quote">
+		<div class="quote_container">
+			<div class="bbcode_quote_container"></div>
+			
+				<div class="bbcode_postedby">
+					<img src="https://forum.developpez.be/images/misc/quote_icon.png" alt="Citation" /> Envoyé par <strong>thelvin</strong>
+					<a href="https://www.developpez.net/forums/showthread.php?p=11700198#post11700198" rel="nofollow"><img class="inlineimg" src="https://forum.developpez.be/images/buttons/viewpost-right.png" alt="Voir le message" /></a>
+				</div>
+				<div class="message">Non. L'inverse est possible mais c'est déjà moins étonnant. Ça veut dire qu'on peut utiliser les programmes et libs existants, sans être obligé de garder les versions de Java qui les ont faites à l'époque (et sans être obligé de se caler sur une version unique de Java pour les différentes bibliothèques.)</div>
+			
+		</div>
+	</div>
+</div>L'inverse est possible, mais attention, pas toujours: il faut aussi que tu n'aies pas utilisé une des nombreuses librairies qu'Oracle a considéré comme obsolètes depuis la version 9, ou alors tu dois les télécharger séparément. J'ai notamment le cas pour un projet que je maintiens mais qui a une vieille dépendance à JAXB dont on peine à se débarasser parce que nous avons des dépendances à d'autres librairies qui elles ont conservé l'usage de JAXB.						<script type="text/javascript">var g_token = "0168987cb9bd1dd73b808def20878a44"; </script>
+
+<div class="votesDansLesComs"><div class="contentCom" style="width:max-content; margin:4px 14px 0 10%; height:30px; white-space:nowrap;" ><table cellspacing="0" cellpadding="0" style="margin:0px;"><tbody><tr data-actu="313470" data-post="11700272" class="ciblerVoteCom"><td role='plus'>
+<img role='voteplus' src='/public/images/vote-coms/vote_plus.png' title='Voter pour' style='cursor:pointer;' data-vote='1'>
+<span role='nbvotesplus'>0</span>&nbsp;</td>
+<td role='moins'>
+<img role='votemoins' src='/public/images/vote-coms/vote_moins.png' title='Voter contre' style='cursor:pointer;' data-vote='1'>
+<span role='nbvotesmoins'>1</span>&nbsp;</td>
+</tr></tbody></table></div></div>					</div>
+				</div>
+					
+						
+								
+				<div id="post11700880" class="d-flex flex-row showtopic">
+					<div class="p-2 postUser" itemscope itemtype="http://data-vocabulary.org/Person">
+													<div class="username">
+								<a href="https://www.developpez.com/user/profil/93249/lvr" itemprop="name" class="fn">
+									lvr								</a>
+							</div>
+												<div class="avatar">
+															<img itemprop="photo" class="posterAvatar" src="https://www.developpez.net/forums/image.php?u=93249" title="Avatar de lvr" alt="Avatar de lvr" />
+													</div>
+						<div class="user">
+							<span itemprop="role" class="title">
+								Membre éprouvé							</span>
+
+							<span style="display:none" itemprop="affiliation">https://www.developpez.com</span>
+							<span style="display:none" class="adr" itemprop="location" itemscope itemtype="http://data-vocabulary.org/Address">
+								<span style="display:none" itemprop="coutry-name" class="region"></span>
+							</span>							
+
+							<div class="date">Le 18/03/2021 à 15:41</div>
+							
+						</div>
+					</div>
+
+					
+					<div class="p-2 postMessage item voteCom" valign="top">
+						Comment gérer l'hétérogénéité de la distribution du JRE pour des app grand public ?<br />
+Je constate que sous Windows c'est encore souvent la 1.8 (sans toujours une possibilité de mettre à jour (ex des PC corporate)).<br />
+Sous ma VM Xubuntu, openJdk 8 et 11 sont présents, ...<br />
+Donc j'aurais tendance à tout garder sour Java 8, tant qu'elle est supportée, et quand elle ne l'est plus, alors passer à Java 11.<br />
+C'est quoi votre approche ?						<script type="text/javascript">var g_token = "0168987cb9bd1dd73b808def20878a44"; </script>
+
+<div class="votesDansLesComs"><div class="contentCom" style="width:max-content; margin:4px 14px 0 10%; height:30px; white-space:nowrap;" ><table cellspacing="0" cellpadding="0" style="margin:0px;"><tbody><tr data-actu="313470" data-post="11700880" class="ciblerVoteCom"><td role='plus'>
+<img role='voteplus' src='/public/images/vote-coms/vote_plus.png' title='Voter pour' style='cursor:pointer;' data-vote='1'>
+<span role='nbvotesplus'>0</span>&nbsp;</td>
+<td role='moins'>
+<img role='votemoins' src='/public/images/vote-coms/vote_moins.png' title='Voter contre' style='cursor:pointer;' data-vote='1'>
+<span role='nbvotesmoins'>1</span>&nbsp;</td>
+</tr></tbody></table></div></div>					</div>
+				</div>
+					
+						
+								
+				<div id="post11700894" class="d-flex flex-row showtopic">
+					<div class="p-2 postUser dernier" itemscope itemtype="http://data-vocabulary.org/Person">
+													<div class="username">
+								<a href="https://www.developpez.com/user/profil/7604/Mister-Nono" itemprop="name" class="fn">
+									Mister Nono								</a>
+							</div>
+												<div class="avatar">
+															<img itemprop="photo" class="posterAvatar" src="https://www.developpez.com/public/images/default-avatar.png" title="Avatar de Mister Nono" alt="Avatar de Mister Nono" />
+													</div>
+						<div class="user">
+							<span itemprop="role" class="title">
+								Membre expérimenté							</span>
+
+							<span style="display:none" itemprop="affiliation">https://www.developpez.com</span>
+							<span style="display:none" class="adr" itemprop="location" itemscope itemtype="http://data-vocabulary.org/Address">
+								<span style="display:none" itemprop="coutry-name" class="region"></span>
+							</span>							
+
+							<div class="date">Le 18/03/2021 à 15:56</div>
+							
+						</div>
+					</div>
+
+					
+					<div class="p-2 postMessage item dernier voteCom" valign="top">
+						<div class="bbcode_container">
+	<div class="bbcode_quote">
+		<div class="quote_container">
+			<div class="bbcode_quote_container"></div>
+			
+				<div class="bbcode_postedby">
+					<img src="https://forum.developpez.be/images/misc/quote_icon.png" alt="Citation" /> Envoyé par <strong>lvr</strong>
+					<a href="https://www.developpez.net/forums/showthread.php?p=11700880#post11700880" rel="nofollow"><img class="inlineimg" src="https://forum.developpez.be/images/buttons/viewpost-right.png" alt="Voir le message" /></a>
+				</div>
+				<div class="message">Donc j'aurais tendance à tout garder sour Java 8, tant qu'elle est supportée, et quand elle ne l'est plus, alors passer à Java 11.<br />
+C'est quoi votre approche ?</div>
+			
+		</div>
+	</div>
+</div>Après près de 20 ans de bons et loyaux services, cela fait 2 ans que je ne réalise plus d'applications en JAVA et la vie est belle. <img src="https://www.developpez.net/forums/images/smilies/toine.gif" border="0" alt="" title=":mouarf:" class="inlineimg" />						<script type="text/javascript">var g_token = "0168987cb9bd1dd73b808def20878a44"; </script>
+
+<div class="votesDansLesComs"><div class="contentCom" style="width:max-content; margin:4px 14px 0 10%; height:30px; white-space:nowrap;" ><table cellspacing="0" cellpadding="0" style="margin:0px;"><tbody><tr data-actu="313470" data-post="11700894" class="ciblerVoteCom"><td role='plus'>
+<img role='voteplus' src='/public/images/vote-coms/vote_plus.png' title='Voter pour' style='cursor:pointer;' data-vote='1'>
+<span role='nbvotesplus'>0</span>&nbsp;</td>
+<td role='moins'>
+<img role='votemoins' src='/public/images/vote-coms/vote_moins.png' title='Voter contre' style='cursor:pointer;' data-vote='1'>
+<span role='nbvotesmoins'>1</span>&nbsp;</td>
+</tr></tbody></table></div></div>					</div>
+				</div>
+					
+						
+			</div>				
+					
+			
+	
+				<!--
+									<img src="/public/images/previous-classement.gif" title="Page précédente" role="previous" start="11699910"/>
+													<img src="/public/images/next-classement.gif" title="Page suivante" role="next" start="11699930"/>
+								-->
+
+				<div class="responses">
+																<a class="button poster" href="https://www.developpez.net/forums/newreply.php?do=newreply&amp;noquote=1&amp;t=2088339">
+							<i class="fas fa-edit"></i><span>Commenter</span>
+						</a>
+						<a class="button signaler" title="Signaler un problème sur cette actualité (correction, suggestion...)">
+							<i class="fas fa-flag"></i><span>Signaler un problème</span>
+						</a>
+										<br />&nbsp;
+				</div>
+		
+				
+					</div>
+					
+	
+
+	</div>
+
+<div id="autopromoActu">
+			</div>
+
+<div id="colonneDroite" class="colonneDroite">
+	<aside>
+		
+<div style="text-align:center; line-height:1;" id="encart_droite">
+
+	
+	<div id="pz4ki3q" class="dvpb3" style="display: inline-block; width: 300px; min-height: 250px; max-height: 600px"></div><div id="gabarit_pub3"></div>	
+	<script type="text/javascript" src="/public/js/colonne-droite.js"></script>
+
+</div>
+		
+		<div id="suite_colonne_droite" data-simplebar>
+
+							<div class="voiraussiTitle">Discussion</div>
+				<div class="voiraussi" style="text-align:center;">
+											<a href="https://www.developpez.net/forums/d2088339/java/general-java/oracle-annonce-disponibilite-java-16/#post11699920" class="button">
+							<img src="/public/images/commentaire.png"/>&nbsp;&nbsp;<span>Discussion&nbsp;forum</span>
+						</a>
+									</div>
+			
+							<div class="voiraussiTitle">Les rubriques (actu, forums, tutos) de Développez</div>
+				<div class="voiraussi">
+					<ul>
+													<li class="voiraussiItem"><a href="https://www.developpez.com">Accueil</a></li>
+													<li class="voiraussiItem"><a href="https://java.developpez.com">Java</a></li>
+													<li class="voiraussiItem"><a href="https://javaweb.developpez.com">Java Web</a></li>
+													<li class="voiraussiItem"><a href="https://programmation.developpez.com">Programmation</a></li>
+											</ul>
+				</div>
+			
+							<div class="voiraussiTitle">Tags</div>
+				<div class="voiraussi">
+											<a class="tag" href="/actu/Java">Java</a>
+											<a class="tag" href="/actu/Oracle">Oracle</a>
+									</div>
+			
+							<div class="voiraussiTitle">Retrouvez le dossier complet de la rédaction</div>
+				<div class="voiraussi voiraussiScrollable">
+																	<article>
+															<figure class="figure">
+									<img class="img-fluid" src="https://www.developpez.com/images/logos/open-jdk.png" style="width:34px;" />
+								</figure>
+														<a class="titre" href="/actu/307870/Le-JDK-16-est-deja-en-cours-de-developpement-bien-que-les-travaux-sur-le-JDK-15-continuent-et-devrait-arriver-avec-la-prise-en-charge-des-fonctionnalites-du-Cplusplus-14/">
+								06/08 - Le JDK 16 est déjà en cours de développement, bien que les travaux sur le JDK 15 continuent, <span style="font-weight: normal">et devrait arriver avec la prise en charge des fonctionnalités du C++ 14</span>							</a>
+						</article>
+									</div>
+							<div class="voiraussiTitle">Sur le même sujet</div>
+				<div class="voiraussi voiraussiScrollable">
+											
+												
+						<article>
+															<figure class="figure">
+									<img class="img-fluid" src="https://www.developpez.com/images/logos/java.png" style="width:34px;" />
+								</figure>
+														<a class="titre" href="https://java.developpez.com/actu/313172/Marquee-obsolete-depuis-2016-l-API-Applet-sera-bientot-definitivement-supprimee-de-Java-y-a-t-il-des-raisons-de-regretter-les-applets-Java/">
+								07/03 - Marquée obsolète depuis 2016, l'API Applet sera bientôt définitivement supprimée de Java,<span style="font-weight: normal"> y a-t-il des raisons de regretter les applets Java ?</span>							</a>
+						</article>
+						
+											
+												
+						<article>
+															<figure class="figure">
+									<img class="img-fluid" src="https://www.developpez.com/images/logos/eclipse.png" style="width:34px;" />
+								</figure>
+														<a class="titre" href="https://eclipse.developpez.com/actu/311361/Eclipse-2020-12-4-18-est-disponible-avec-de-nouvelles-fonctionnalites-pour-l-editeur-Java-et-un-nouveau-theme-System-qui-s-integre-bien-dans-n-importe-quels-OS-et-theme-d-OS/">
+								21/12 - Eclipse 2020-12 (4.18) est disponible avec de nouvelles fonctionnalités pour l'éditeur Java <span style="font-weight: normal">et un nouveau thème "System" qui s'intègre bien dans n'importe quels OS et thème d'OS</span>							</a>
+						</article>
+						
+											
+												
+						<article>
+															<figure class="figure">
+									<img class="img-fluid" src="https://www.developpez.com/images/logos/java.png" style="width:34px;" />
+								</figure>
+														<a class="titre" href="https://java.developpez.com/actu/308884/Alors-que-Java-fete-ses-25-ans-Oracle-annonce-l-arrivee-de-JDK-15-Cette-version-modernise-le-code-existant-et-s-accompagne-de-la-suppression-du-moteur-JavaScript-Nashorn/">
+								16/09 - Alors que Java fête ses 25 ans, Oracle annonce l'arrivée de JDK 15. Cette version modernise le code existant <span style="font-weight: normal">et s'accompagne de la suppression du moteur JavaScript Nashorn</span>							</a>
+						</article>
+						
+											
+												
+						<article>
+															<figure class="figure">
+									<img class="img-fluid" src="https://www.developpez.com/images/logos/open-jdk.png" style="width:34px;" />
+								</figure>
+														<a class="titre" href="https://java.developpez.com/actu/307870/Le-JDK-16-est-deja-en-cours-de-developpement-bien-que-les-travaux-sur-le-JDK-15-continuent-et-devrait-arriver-avec-la-prise-en-charge-des-fonctionnalites-du-Cplusplus-14/">
+								06/08 - Le JDK 16 est déjà en cours de développement, bien que les travaux sur le JDK 15 continuent, <span style="font-weight: normal">et devrait arriver avec la prise en charge des fonctionnalités du C++ 14</span>							</a>
+						</article>
+						
+									</div>
+			
+			<div class="voiraussiTitle">Connexion</div>
+			<div>
+				
+<script type="text/javascript" src="/public/js/log.js"></script>
+
+<link rel="stylesheet" href="/public/css/log.css?1609791015" type="text/css" />
+
+<form>
+	<div id="LoginBox">
+			
+		<div class="groupbox connexion" data-title="Connexion">
+			<div class="form">
+				<span id="loginIdentifiant">Identifiant</span>
+				<input type="text" class="form-control" id="loginFormlogin" />
+				
+				<span id="loginMdp">Mot de passe</span>
+				<input type="password" class="form-control" id="loginFormPass" />
+				
+				<div id="btnValidationConnexion">
+					<input type="button" value="Je me connecte !" id="loginFormButton" title="Insérez votre identifiant et mot de passe dans les cases correspondantes pour vous connecter, ou cliquez sur le bouton « S'inscrire » pour créer un profil personnel." class="btn btn-primary" />
+					<div id="loadingConnexion" class="spinner-border text-light" role="status"><span class="sr-only">Loading...</span></div>
+				</div>
+				
+				<div id="loginFormMsg" style="display: none;"></div>
+				
+				<div id="loginFormInscription"><a href="https://www.developpez.net/forums/inscription/">S'inscrire</a></div>
+				<div id="loginMdpPerdu"><a href="https://www.developpez.net/forums/login.php?do=lostpw">Mot de passe oublié ?</a></div>
+			</div>
+		</div>
+		
+		<div class="groupbox actions" data-title="Mes actions"></div>
+		
+	</div>
+</form>			</div>
+
+		</div>
+
+	</aside>
+</div>
+
+<script type="text/javascript">
+	$(function() {
+		if ($("#gabarit_pubBB").is(":hidden"))
+			$('.contenuPage').attr('style', 'min-height:auto;padding-top:20px !important');
+	$("#gabarit_voiraussi").load("https://www.developpez.com/voiraussi/index/rubrique/4/");
+	$("#gabarit_encartemploi").load("https://www.developpez.com/ws/offres?alt=3&utf8=1");
+});
+</script>
+
+<img src="https://compteur.developpez.com/compter-4" alt="" width="1" height="1" style="position: absolute; left: 1px; top: 1px">
+<img src="https://compteur.developpez.com/show_i.php/4/0" alt="" width="1" height="1" style="position: absolute; left: 1px; top: 1px">
+<img src="https://compt.developpez.com/compter-4" alt="" width="1" height="1" style="position: absolute; left: 1px; top: 1px">
+<script type="text/javascript">$(function(){$("#pq4lg0t").load("/template/pq4lg0t"+'0'+".jpg");$("#pz4ki3q").load("/template/pz4ki3q"+'0'+".jpg");});</script>
+</div>
+
+	</section>
+
+	<div id="gabarit_voiraussi"></div>
+	<div id="gabarit_encartemploi_desactive"></div>
+
+	<footer>
+
+	<div id="gabarit_responsable">
+			Responsables b&eacute;n&eacute;voles de la rubrique Java :
+		<a href="http://www.developpez.net/forums/u69211/keulkeul/" target="_blank">Mickael Baron</a> -
+		<a href="http://www.developpez.net/forums/u313680/robin56/" target="_blank">Robin56</a> -						<script type="text/javascript">
+		document.write("<a href=\"");
+		document.write("znvygb:wnin@erqnpgvba-qrirybccrm.pbz".replace(/[A-Z]/gi, c =>
+    "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm"[
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".indexOf(c)]));
+		document.write("\">Contacter par email</a>");
+</script>
+			</div>
+
+	<ul id="gabarit_pied">
+		<li><a href="https://club.developpez.com/contacts/">Nous contacter</a>
+		<li><a href="https://www.developpez.com/participez/">Participez</a>
+	<li><a href="https://www.developpez.com/hebergement/">H&eacute;bergement</a>
+	<li><a href="https://www.developpez.com/advertising/">Publicit&eacute; / Advertising</a>
+	<li><a href="https://www.developpez.com/legal/">Informations l&eacute;gales</a>
+			<li>Partenaire : <a href="https://www.planethoster.com/fr/" target="_blank" rel="noopener">H&eacute;bergement Web</a>
+		</ul>
+
+<p id="gabarit_copyright">&copy; 2000-2021 - www.developpez.com</p>
+
+
+	</footer>
+<!-- Google Analytics general -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-28115938-1']);
+  _gaq.push(['_setDomainName', 'developpez.com']);
+  _gaq.push(['_setCustomVar', 1, 'rubrique', 'java', 3]);
+  _gaq.push(['_setCustomVar', 2, 'type', 'News', 3]);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+
+</body>
+</html>
+

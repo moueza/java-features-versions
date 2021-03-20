@@ -1,1 +1,51 @@
 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Cafe with a Vue</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- Si (if) l'utilisateur a les autorisations par défaut, afficher ce qui suit -->
+      <section v-if="userPermission === 'defaultVif'"><a href="java-15-16.html">java-15-16.html</a></section>
+      <!-- Sinon et si l'utilisateur a les autorisations administrateur, afficher ce qui suit -->
+      <section v-else-if="userPermission === 'adminVelseif'">v-else-if</section>
+      <!-- Si l'utilisateur n'a aucune autorisation afficher ce qui suit -->
+      <section v-else>v-else</section>
+
+
+    </div>
+
+
+
+
+
+
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      
+      const app = new Vue({
+          el: "#app",
+          data: {
+              restaurantName: "Café avec vue",
+
+              adresse: "18 avenue du Beurre, Paris, France",
+              telphone: "01 88 88 88 88",
+              email: "hello@cafewithavue.bakery",
+	      userPermission: 'defaultVif',
+          },
+          computed: {
+              copyrightt() {
+		  return "Copyright " + this.restaurantName + " 2019";
+              },
+          },
+      });
+    </script>
+  </body>
+</html>
